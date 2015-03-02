@@ -202,6 +202,7 @@ public class PaypPalNuevo extends HttpServlet {
 				while (links.hasNext()) {
 					Links link = links.next();
 					if (link.getRel().equalsIgnoreCase("approval_url")) {
+						LOGGER.info("URL para redirigir: " + link.getHref());
 						req.setAttribute("redirectURL", link.getHref());
 					}
 				}
