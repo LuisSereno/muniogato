@@ -1,0 +1,120 @@
+.jqGSContainer{position:relative;width:50%;clear:both;padding-bottom:10px;}
+.jqGSContainer .jqGSImgContainer{width:50%;height:50%}
+.jqGSContainer .jqGSImgContainer ul{padding:0;margin:0;position:relative;list-style:none;}
+.jqGSContainer .jqGSImgContainer ul li{padding:0;margin:0;position:relative;margin-top:0;margin-bottom:0px;float:left;}
+.jqGSContainer .jqGSImgContainer ul li .jqGSLoader{width:50%;height:50%;position:absolute;}
+.jqGSContainer .jqGSImgContainer ul li img{}
+.jqGSContainer .jqGSImgContainer ul li .jqGSTitle{background:#000;position:absolute;right:0px;top:0px; padding:3px;color:#fff;width:300px}</p>
+<p>.jqGSContainer .jqGSPagination{position:relative;width:100%;height:30px;top:5px;padding: 5px 0;}
+.jqGSContainer .jqGSPagination ul{padding:0;margin:0;list-style:none;position:relative;float:right;}
+.jqGSContainer .jqGSPagination ul li{padding:0;margin-right:5px;float:left;padding-right:1px;text-align:center;padding-bottom:1px;}
+.jqGSContainer .jqGSPagination ul li a{padding:2px 0px;background:#000;border:1px solid #fff; color: #fff;text-decoration:none;display:block;width:20px;font:10px Verdana, Arial, Helvetica, sans-serif;}
+.jqGSContainer .jqGSPagination ul li a.selected{background:#fff;color:#f03;border: 1px solid #eaeaea;}
+.jqGSContainer .jqGSPagination ul li a:hover{background:#fff;color:#000;border:1px solid #fff;}</p>
+<p>.jqGSImgContainer{border:1px solid #000;}
+
+
+body {
+	background: #f5fec9 url(/imagenes/general/body-bg.jpg) repeat-x center top;
+	opacity:1;
+	color: rgb(0, 0, 0);
+	width: 99%; 
+	height:99%;
+}
+
+.bodyHistoria{
+	background-image:url(/imagenes/general/historia.jpg);
+ 	background-repeat:no-repeat;
+	background-position: center;
+	background-size:100%;
+	width:90%;
+	height:100%;
+	margin-left: 5%;
+	margin-top: 3%;
+}
+
+.bodyHistoriaTexto{
+	color:black;
+	text-indent: 40px;
+	font-size: larger;
+	font-family:sans-serif;
+	font-weight:bold;
+	line-height: 120%;
+} 
+
+
+#listaHabitaciones li {
+	border-bottom: 1px solid #333;
+}
+
+
+/*
+ESTOS SON LOS ESTILOS DE LOS BOTONES
+*/
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+
+.formatoGeneralPantalla{
+	display: block;
+	width: 40%; 
+	height: 50%;
+}
+.imagenBannerArriba{
+	width: 20%; 
+	height: 10px;
+}
+
+#videoInicio embed {
+   width: 300px;
+   height: 240px;
+}
+
+.imagenLateralRegistrado{
+	width: 40%; 
+	height: 10%;
+}

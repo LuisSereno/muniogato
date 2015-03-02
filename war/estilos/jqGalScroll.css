@@ -1,0 +1,609 @@
+.jqGSContainer{position:relative;width:50%;clear:both;padding-bottom:10px;}
+.jqGSContainer .jqGSImgContainer{width:50%;height:50%}
+.jqGSContainer .jqGSImgContainer ul{padding:0;margin:0;position:relative;list-style:none;}
+.jqGSContainer .jqGSImgContainer ul li{padding:0;margin:0;position:relative;margin-top:0;margin-bottom:0px;float:left;}
+.jqGSContainer .jqGSImgContainer ul li .jqGSLoader{width:50%;height:50%;position:absolute;}
+.jqGSContainer .jqGSImgContainer ul li img{}
+.jqGSContainer .jqGSImgContainer ul li .jqGSTitle{background:#000;position:absolute;right:0px;top:0px; padding:3px;color:#fff;width:300px}</p>
+<p>.jqGSContainer .jqGSPagination{position:relative;width:100%;height:30px;top:5px;padding: 5px 0;}
+.jqGSContainer .jqGSPagination ul{padding:0;margin:0;list-style:none;position:relative;float:right;}
+.jqGSContainer .jqGSPagination ul li{padding:0;margin-right:5px;float:left;padding-right:1px;text-align:center;padding-bottom:1px;}
+.jqGSContainer .jqGSPagination ul li a{padding:2px 0px;background:#000;border:1px solid #fff; color: #fff;text-decoration:none;display:block;width:20px;font:10px Verdana, Arial, Helvetica, sans-serif;}
+.jqGSContainer .jqGSPagination ul li a.selected{background:#fff;color:#f03;border: 1px solid #eaeaea;}
+.jqGSContainer .jqGSPagination ul li a:hover{background:#fff;color:#000;border:1px solid #fff;}</p>
+<p>.jqGSImgContainer{border:1px solid #000;}
+
+
+body {
+	background: #f5fec9 url(/imagenes/general/body-bg.jpg) repeat-x center top;
+	opacity:1;
+	color: rgb(0, 0, 0);
+	width: 99%; 
+	height:99%;
+}
+
+.bodyHistoria{
+	width:90%;
+	height:100%;
+	margin-left: 5%;
+	margin-top: 3%;
+}
+
+.bodyHistoria img {
+	float: left;
+}
+
+.bodyHistoriaTexto{
+	color:black;
+	text-indent: 40px;
+	font-size: larger;
+	font-family:sans-serif;
+} 
+
+
+#listaHabitaciones li {
+	border-bottom: 1px solid #333;
+}
+
+.mapaGrande{
+	display: block;
+}
+.mapaMediano{
+	display: none;
+}
+
+
+
+.tablaInicio{
+	text-align: center; 
+	width: 70%;
+	margin-left:13%;
+	border:5;
+	cellpadding:2;
+}
+
+.tablaInicio td{
+	vertical-align: top;
+}
+
+.tablaInicio td  img {
+	padding:15px; /* Espacio entre la imagen y el borde */
+	background:#FFF; /* Color de fondo que se ve entre el espacio */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	width:300px;
+	height:250px;
+}
+.tablaInicio td  img:hover {
+	border-radius: 15% 15%; /* Borde redondeado */
+	box-shadow: 0px 0px 15px #000; /* Sombra */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	cursor:pointer;
+	width:300px;
+	height:250px;
+}
+
+
+.imagenFace{
+	width:7%; 
+	height:7%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*
+ESTOS SON LOS ESTILOS DE LOS BOTONES
+*/
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+
+.imagenBooking{
+	width:100%; 
+	height:100px;
+	margin-bottom: 5%;
+} 
+
+.imagenLateralRegistrado{
+	width: 40%; 
+	height: 40%;
+}
+
+.bannerLateralInicio{
+	width: 100%; 
+	height: 100%;
+}
+
+#videoInicio embed {
+   width: 900px;
+   height: 500px;
+}
+
+
+.bannerLateralCarrito{
+	width: 40%; 
+	height: 40%;
+}
+
+	
+.bannerLateralCarritoTabla{
+	width: 100%; 
+	height: 100%;
+	font-family: Monotype Corsiva;
+}
+
+.informacionBannerLateral{
+	width: 100%; 
+}
+
+.imagenesAnadidas{
+	width: 100%;
+	height: 100%;
+}
+
+.tamanoImagenes{
+	width:100%;
+	height:100%;
+}
+
+.tablaInicio{
+	text-align: center; 
+	width: 70%;
+	margin-left:13%;
+	border:5;
+	cellpadding:2;
+}
+
+.tablaInicio td{
+	vertical-align: top;
+}
+
+.tablaInicio td  img {
+	padding:15px; /* Espacio entre la imagen y el borde */
+	background:#FFF; /* Color de fondo que se ve entre el espacio */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	width:300px;
+	height:250px;
+}
+.tablaInicio td  img:hover {
+	border-radius: 15% 15%; /* Borde redondeado */
+	box-shadow: 0px 0px 15px #000; /* Sombra */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	cursor:pointer;
+	width:300px;
+	height:250px;
+}
+
+.imagenBannerArriba{
+
+}
+
+.imagenBannerArriba img{
+	margin-left:20%;
+	width: 60%; 
+	height: 150px;
+}
+
+.columnaIniciaSesion{
+ 	vertical-align: top; 
+ 	width: 10%; 
+ 	height: 100%; 
+ 	text-align: center;
+ }
+ 
+ .textoActividades{
+ 	margin-left:15%;
+ }
+ 
+ .camposFormulario{
+	 float: left;
+	  width: 70%;
+ }
+
+ .camposFormulario label{
+	  width: 20%;
+	  display: inline-block;
+ }
+ 
+  .camposFormulario input{
+	  width: 40%;
+	  display: inline-block;
+ }
+  
+  .camposFormulario textarea{
+	  width: 90%;
+	  display: inline-block;
+ 	  margin-left: 20%;
+ }
+ 
+ .botonesFormulario{
+ 	clear:both; 
+ 	margin-left:50%;
+ 	padding-top: 2%
+ }
+ 
+ .paginaFormulario{
+ 	width: 100%
+ }
+ 
+ #googleMap{
+ 	display: inline-block; 
+ 	width: 40%; 
+ 	margin-left: 5%;
+ }
+ 
+.cuadroFormularioRegistro{
+	height: 100%;
+	width: 90%;
+	
+}
+
+
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+	
+
+	#todasHabitaciones{
+		width: 130%;
+	}
+	
+	
+	#googleMap{
+		width: 0%;
+		display: block;
+	}
+	 .paginaFormulario{
+ 		width: 150%
+ 	}
+	.mapaMediano{
+		display: none;
+	}
+	.mapaGrande{
+		display: none;
+	}
+ 
+   .camposFormulario input{
+	  width: 100%;
+	  display: inline-block;
+ }
+ 
+	
+	#pantallaActividades, #pantallaMenus{
+		width: 250%;
+	}
+	
+	 .textoActividades{
+	 	margin-left:15%;
+	 	font-size: 100%;
+	 }
+ 
+	.bodyHistoria{
+		width:100%;
+		height:100%;
+		margin-left: 5%;
+		margin-top: 3%;
+	}
+	
+	.bodyHistoria img {
+		float: left;
+		width: 100%;
+	}
+	
+	.bodyHistoriaTexto{
+		color:black;
+		text-indent: 40px;
+		font-size: larger;
+		font-family:sans-serif;
+		width: 160%;
+	} 
+	
+
+	.imagenFace{
+		width:10%; 
+		height:10%;
+		display: block;
+		padding-left:100%;
+	}
+
+	.columnaIniciaSesion{
+		display:none;
+	}
+	
+	.imagenTripAdvisor{
+		display:none;
+	}
+ 
+	.formatoGeneralPantalla{
+		display: block;
+		width: 40%; 
+		height: 50%;
+	}
+	.imagenBannerArriba{
+	}
+
+	.imagenBannerArriba img{
+		width: 100%; 
+		height: 40px;
+		margin-left: 60%;
+	}
+
+	#videoInicio embed {
+	   width: 300px;
+	   height: 240px;
+	}
+	
+	.imagenLateralRegistrado{
+		width: 40%; 
+		height: 10%;
+	}
+ 	
+	.imagenesAnadidas{
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imagenBooking{
+		width:0px; 
+		height:0px;
+		margin-bottom: 5%;
+	}
+	
+	.tamanoImagenes{
+		width:50%;
+		height:50%;
+	}
+	
+	.tablaInicio{
+		text-align: center; 
+		width: 70%;
+		margin-left:13%;
+		border:5;
+		cellpadding:2;
+	}
+
+	.tablaInicio td{
+		vertical-align: top;
+	}
+
+	.tablaInicio td  img {
+		padding:5px; /* Espacio entre la imagen y el borde */
+		background:#FFF; /* Color de fondo que se ve entre el espacio */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		width:100px;
+		height:50px;
+	}
+	
+	.tablaInicio td  img:hover {
+		border-radius: 15% 15%; /* Borde redondeado */
+		box-shadow: 0px 0px 15px #000; /* Sombra */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		cursor:pointer;
+		width:100px;
+		height:50px;
+	}
+	
+}
+
+
+ @media screen and (min-width : 481px) and (max-width: 980px){
+
+ 
+ 	.imagenTripAdvisor{
+		display:none;
+	}
+	
+	#todasHabitaciones{
+		width: 130%;
+	}
+	
+	
+ 	#googleMap{
+ 		width: 0%;
+		display: block;
+	}
+ 
+ 	.mapaMediano{
+		display: block;
+	}
+	.mapaGrande{
+		display: none;
+	}
+ 
+ 
+ 	.imagenLateralRegistrado{
+ 		width: 30%; 
+ 		height: 10%;
+ 	}
+ 	
+	.bannerLateralInicio{
+		width: 100%; 
+		height: 100%;
+	}
+	
+	#botonIniciarSesion button{
+		width: 99%;
+		padding: 1%;
+	}
+	
+	
+	#videoInicio embed {
+    width: 500px;
+    height: 400px;
+	}
+	
+	
+	.bannerLateralCarrito{
+		width: 20%; 
+		height: 10%;
+	}
+	
+	.bannerLateralCarritoTabla tr{
+		width: 10%; 
+		height: 10%;
+		font-family: Monotype Corsiva;
+	}
+	
+	.bannerLateralCarritoTabla tr td{
+		width: 10%; 
+		height: 10%;
+		font-family: Monotype Corsiva;
+	}
+	
+	.informacionBannerLateral{
+		width: 100%; 
+	}
+	
+	.imagenesAnadidas{
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imagenBooking{
+		width:110%; 
+		height:100%;
+		margin-right: 5%;
+		padding-right: 5%; 
+		margin-bottom: 5%;
+	}
+	
+	.tamanoImagenes{
+		width:50%;
+		height:50%;
+	}
+
+	.tamanoImagenes div{
+		padding-left:50%;
+	}
+	
+	.tablaInicio{
+		text-align: center; 
+		width: 100%;
+		margin-left:1%;
+	}
+	
+	.tablaInicio td{
+		vertical-align: top;
+	}
+	
+	.tablaInicio td  img {
+		padding:5px; /* Espacio entre la imagen y el borde */
+		background:#FFF; /* Color de fondo que se ve entre el espacio */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		width:150px;
+		height:100px;
+	}
+	.tablaInicio td  img:hover {
+		border-radius: 15% 15%; /* Borde redondeado */
+		box-shadow: 0px 0px 15px #000; /* Sombra */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		cursor:pointer;
+		width:155px;
+		height:105px;
+	}
+	
+	.imagenBannerArriba{
+
+	}
+	
+	.imagenBannerArriba img{
+		margin-left:20%;
+		width: 60%; 
+		height: 70px;
+	}
+
+	.bodyHistoria img {
+		float: left;
+		width: 100%
+	}
+
+
+}
+
+@media screen and (min-width : 980px) and (max-width: 1024px){
+ 
+ 
+	.mapaMediano{
+		display: block;
+	}
+	.mapaGrande{
+		display: none;
+	}
+
+	.tablaInicio td  img {
+		padding:5px; /* Espacio entre la imagen y el borde */
+		background:#FFF; /* Color de fondo que se ve entre el espacio */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		width:270px;
+		height:150px;
+	}
+
+	.imagenBooking{
+		width:80%; 
+		height:90px;
+		margin-bottom: 5%;
+	} 
+
+
+}  
