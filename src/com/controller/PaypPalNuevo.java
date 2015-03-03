@@ -46,6 +46,8 @@ public class PaypPalNuevo extends HttpServlet {
 
 	private static final Logger LOGGER = Logger.getLogger(PaypPalNuevo.class.getName());
 	Map<String, String> map = new HashMap<String, String>();
+	
+	private String redirect="";
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		// ##Load Configuration
@@ -73,8 +75,14 @@ public class PaypPalNuevo extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		createPayment(req, resp);
-		req.getRequestDispatcher("jsp/response.jsp").forward(req, resp);
+		createPayment(req,resp);
+		if (redirect.equals("")){
+			req.getRequestDispatcher("jsp/response.jsp").forward(req, resp);
+		}else{
+			resp.sendRedirect(redirect);
+			LOGGER.warning("AQUI LLEGA O NO LLEGA LA MIERDA ESTA");
+			redirect="";
+		}
 	}
 
 	public Payment createPayment(HttpServletRequest req, HttpServletResponse resp) {
@@ -102,7 +110,8 @@ public class PaypPalNuevo extends HttpServlet {
 //			 apiContext = new APIContext(accessToken, requestId);
 			
 		} catch (PayPalRESTException e) {
-			req.setAttribute("error", e.getMessage());
+			LOGGER.warning(e.getMessage());
+			e.printStackTrace();
 		}
 		if (req.getParameter("PayerID") != null) {
 			Payment payment = new Payment();
@@ -118,7 +127,11 @@ public class PaypPalNuevo extends HttpServlet {
 			} catch (PayPalRESTException e) {
 				ResultPrinter.addResult(req, resp, "Executed The Payment", Payment.getLastRequest(), null, e.getMessage());
 			}
-		} else {
+		} else if (req.getParameter("guid") != null){
+			LOGGER.warning("QUIETO PARADOOOO");
+			LOGGER.warning(req.getParameter("guid"));
+			LOGGER.warning(req.getParameter("PayerID"));
+		}else{
 
 			// ###Details
 			// Let's you specify details of a payment amount.
@@ -180,12 +193,8 @@ public class PaypPalNuevo extends HttpServlet {
 			// ###Redirect URLs
 			RedirectUrls redirectUrls = new RedirectUrls();
 			String guid = UUID.randomUUID().toString().replaceAll("-", "");
-			redirectUrls.setCancelUrl(req.getScheme() + "://"
-					+ req.getServerName() + ":" + req.getServerPort()
-					+ req.getContextPath() + "/paymentwithpaypal?guid=" + guid);
-			redirectUrls.setReturnUrl(req.getScheme() + "://"
-					+ req.getServerName() + ":" + req.getServerPort()
-					+ req.getContextPath() + "/paymentwithpaypal?guid=" + guid);
+			redirectUrls.setCancelUrl(req.getScheme() + "://"+ req.getServerName() + ":" + req.getServerPort()	+ req.getContextPath() + "/compraIncorrecta?guid=" + guid);
+			redirectUrls.setReturnUrl(req.getScheme() + "://"+ req.getServerName() + ":" + req.getServerPort()+ req.getContextPath() + "/compraCorrecta?guid=" + guid);
 			payment.setRedirectUrls(redirectUrls);
 
 			
@@ -202,11 +211,9 @@ public class PaypPalNuevo extends HttpServlet {
 				while (links.hasNext()) {
 					Links link = links.next();
 					if (link.getRel().equalsIgnoreCase("approval_url")) {
-						LOGGER.info("URL para redirigir: " + link.getHref());
-						req.setAttribute("redirectURL", link.getHref());
+						redirect=link.getHref();
 					}
 				}
-				ResultPrinter.addResult(req, resp, "Payment with PayPal", Payment.getLastRequest(), Payment.getLastResponse(), null);
 				map.put(guid, createdPayment.getId());
 			} catch (PayPalRESTException e) {
 				ResultPrinter.addResult(req, resp, "Payment with PayPal", Payment.getLastRequest(), null, e.getMessage());

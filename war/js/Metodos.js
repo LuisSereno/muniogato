@@ -654,7 +654,8 @@ function borrarReserva(idReserva){
 				}
 				var el = document.getElementById("PaginaDetallePago"); 
 				if (el.style.display=='block'){
-					parametros={"tipoPaypal":"DETALLE"}
+					parametros={"tipoPaypal":"DETALLE"};
+					alert ("ESTAMOS AQUI EN ESTE SITIO RARO");
 					$.post('/paypalButton',parametros, function(output){
 						boton=output;
 						borrarTabla("tablaDetalleCompra");
@@ -663,8 +664,6 @@ function borrarReserva(idReserva){
 								anadirFilaTabla("#tablaDetalleCompra",datosDetalle[datos]);
 							}
 							anadirFilaTotal("#tablaDetalleCompra",total,9);
-							limpiarDiv("botonFormularioPaypal");
-							$("#botonFormularioPaypal").append(boton)
 						}else{
 							if (document.getElementById){ 
 								var el = document.getElementById("paginasMenu"); 
@@ -742,7 +741,6 @@ function detalleVentanaPago(){
 			if (precioTotalCarrito!=null){
 				anadirFilaTotal("#tablaDetalleCompra",precioTotalCarrito,9);
 			}
-			$("#botonFormularioPaypal").append(boton)
 		}else{
 			
 			$("#desconectar").prop("disabled",false);
@@ -774,7 +772,6 @@ function ventanaPago(){
 	$("#pagoTotalCarrito").prop("disabled",true);
 	
 	$.post('/paypalButton',params, function(output){
-		boton=output;
 		detalleVentanaPago();
 		document.body.style.cursor = "auto";
 	});
