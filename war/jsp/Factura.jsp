@@ -3,8 +3,7 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
 <html>
 <head>
-	<meta content='text/html; charset=ISO-8859-1'
-	http-equiv='content-type'>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">  
 	<title>Factura</title>
 	
 	<script>
@@ -21,7 +20,7 @@
 	
 </head>
 <body  onunload="salirPagina();">
-	<div style='text-align: center;'><big><big><big>FACTURA Nº xxxxxxxxxxxx</big></big></big>
+	<div style='text-align: center;'><big><big><big>FACTURA NÂº xxxxxxxxxxxx</big></big></big>
 	<br>
 	<br>
 	<div id='divFacturaArribaIzquierda' style='text-align: left; float: left; width: 50%;'>
@@ -56,7 +55,7 @@
 	<table style='text-align: left; width: 100%;' border='5' cellpadding='2' cellspacing='2'>
 		<tbody>
 			<tr>
-				<td	style='vertical-align: top; width: 20%; background-color: rgb(0, 204, 204);'>Nombre Habitación<br></td>
+				<td	style='vertical-align: top; width: 20%; background-color: rgb(0, 204, 204);'>Nombre HabitaciÃ³n<br></td>
 				<td	style='vertical-align: top; width: 30%; background-color: rgb(0, 204, 204);'>Fecha Inicio Reserva<br></td>
 				<td	style='vertical-align: top; width: 30%; background-color: rgb(0, 204, 204);'>Fecha Fin Reserva<br></td>
 				<td	style='vertical-align: top; width: 20%; background-color: rgb(0, 204, 204);'>Precio<br></td>

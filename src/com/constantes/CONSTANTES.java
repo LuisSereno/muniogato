@@ -99,7 +99,7 @@ public class CONSTANTES implements Serializable{
     /**
      * 
      */
-    public static final String IMPUESTOS = "21";
+    public static final String IMPUESTOS = "0";
     
     /**
      * Constante de conexion con la base de datos

@@ -19,6 +19,8 @@ $( "#dialog-message" ).dialog({
 
 </script>
 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+
 <div id="dialog-message" title="<%=request.getParameter("titulo")%>">
 	<%
 		String cadenaError="";

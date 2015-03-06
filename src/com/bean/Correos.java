@@ -32,7 +32,7 @@ import com.interfaces.ConectaRecursos;
 public class Correos  implements ConectaRecursos<Correos>, Serializable {
 
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(Correos.class.getName());
 	/**
@@ -187,9 +187,7 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 		
 		boolean enviado=true;
 		Properties props = new Properties();
-		log.info("Lo nuevo de la sesion del correo");  
         Session session = Session.getDefaultInstance(props, null);
-        log.info("Lo nuevo de la sesion del correo");
 		session.setDebug(true);
 		
 		MimeMessage message = new MimeMessage(session);
@@ -200,7 +198,6 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 	
 			// A quien va dirigido
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.getEmail()));
-			
 			
 			message.setSubject(this.getAsunto());
 			if (!Factura){
@@ -213,15 +210,17 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 				// Create a related multi-part to combine the parts
 				MimeMultipart multipart = new MimeMultipart("related");
 				multipart.addBodyPart(messageBodyPart);
-
+				
 				// Create part for the image
 				messageBodyPart = new MimeBodyPart();
 
+				messageBodyPart.setFileName("FacturaHRGM.jpg");
 				// Fetch the image and associate to part
-				DataSource fds = new FileDataSource("imagenes/general/00008897.jpg");
+				DataSource fds = new FileDataSource("imagenes/general/logohotel-2.png");
 				messageBodyPart.setDataHandler(new DataHandler(fds));
 				messageBodyPart.setHeader("Content-ID","<logotipo>");
 
+				
 				// Add part to multi-part
 				multipart.addBodyPart(messageBodyPart);
 
@@ -241,6 +240,12 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 			this.insertarElemento();
 			e.printStackTrace();
 			enviado=false;
+		} catch (Exception e) {
+			enviado=false;
+			log.warning(e.getLocalizedMessage() + e.getMessage());
+			log.warning("Error al enviar el correo");
+			e.printStackTrace();
+			
 		}
 		return enviado;
 	}
@@ -311,7 +316,7 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 
 	@Override
 	public Correos devolverElemento() {
-		//Esto tendremos que ponerlo como null para controlar el error más arriba tal y como hago con el usuario
+		//Esto tendremos que ponerlo como null para controlar el error mï¿½s arriba tal y como hago con el usuario
 		Correos corr= new Correos();
 		try{
 			CRUD bbdd;
@@ -405,7 +410,7 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 	
 	
 	public Correos devolverElementoReferencia() {
-		//Esto tendremos que ponerlo como null para controlar el error más arriba tal y como hago con el usuario
+		//Esto tendremos que ponerlo como null para controlar el error mï¿½s arriba tal y como hago con el usuario
 		Correos corr= new Correos();
 		try{
 			CRUD bbdd;

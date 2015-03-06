@@ -19,7 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.bean.Reserva;
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
 import com.paypal.api.payments.Item;
@@ -27,7 +29,6 @@ import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
-import com.paypal.api.payments.PaymentExecution;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.APIContext;
@@ -44,17 +45,19 @@ public class PaypPalNuevo extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = Logger.getLogger(PaypPalNuevo.class.getName());
-	Map<String, String> map = new HashMap<String, String>();
-	
-	private String redirect="";
+	private static final Logger LOGGER = Logger.getLogger(PaypPalNuevo.class
+			.getName());
+	static Map<String, String> map = new HashMap<String, String>();
+
+	private String redirect = "";
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		// ##Load Configuration
 		// Load SDK configuration for
 		// the resource. This intialization code can be
 		// done as Init Servlet.
-		InputStream is = PaypPalNuevo.class.getResourceAsStream("/com/autentia/tutorial/conf/sdk_config.properties");
+		InputStream is = PaypPalNuevo.class
+				.getResourceAsStream("/com/autentia/tutorial/conf/sdk_config.properties");
 
 		try {
 			PayPalResource.initConfig(is);
@@ -75,17 +78,17 @@ public class PaypPalNuevo extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		createPayment(req,resp);
-		if (redirect.equals("")){
+		createPayment(req, resp);
+		if (redirect.equals("")) {
 			req.getRequestDispatcher("jsp/response.jsp").forward(req, resp);
-		}else{
+		} else {
 			resp.sendRedirect(redirect);
-			LOGGER.warning("AQUI LLEGA O NO LLEGA LA MIERDA ESTA");
-			redirect="";
+			redirect = "";
 		}
 	}
 
-	public Payment createPayment(HttpServletRequest req, HttpServletResponse resp) {
+	public Payment createPayment(HttpServletRequest req,
+			HttpServletResponse resp) {
 		Payment createdPayment = null;
 		// ###AccessToken
 		// Retrieve the access token from
@@ -105,119 +108,106 @@ public class PaypPalNuevo extends HttpServlet {
 			// Use this variant if you want to pass in a request id
 			// that is meaningful in your application, ideally
 			// a order id.
-			
-//			 String requestId = Long.toString(System.nanoTime()); 
-//			 apiContext = new APIContext(accessToken, requestId);
-			
+
+			// String requestId = Long.toString(System.nanoTime());
+			// apiContext = new APIContext(accessToken, requestId);
+
 		} catch (PayPalRESTException e) {
 			LOGGER.warning(e.getMessage());
 			e.printStackTrace();
 		}
-		if (req.getParameter("PayerID") != null) {
-			Payment payment = new Payment();
-			if (req.getParameter("guid") != null) {
-				payment.setId(map.get(req.getParameter("guid")));
-			}
 
-			PaymentExecution paymentExecution = new PaymentExecution();
-			paymentExecution.setPayerId(req.getParameter("PayerID"));
-			try {
-				createdPayment = payment.execute(apiContext, paymentExecution);
-				ResultPrinter.addResult(req, resp, "Executed The Payment", Payment.getLastRequest(), Payment.getLastResponse(), null);
-			} catch (PayPalRESTException e) {
-				ResultPrinter.addResult(req, resp, "Executed The Payment", Payment.getLastRequest(), null, e.getMessage());
-			}
-		} else if (req.getParameter("guid") != null){
-			LOGGER.warning("QUIETO PARADOOOO");
-			LOGGER.warning(req.getParameter("guid"));
-			LOGGER.warning(req.getParameter("PayerID"));
-		}else{
+		// ###Details
+		// Let's you specify details of a payment amount.
 
-			// ###Details
-			// Let's you specify details of a payment amount.
-			Details details = new Details();
-			details.setShipping("1");
-			details.setSubtotal("5");
-			details.setTax("1");
+		HttpSession sesion = req.getSession(false);
+		float total=  (float) sesion.getAttribute("precioCarrito");
+		Details details = new Details();
+		details.setSubtotal(String.format("%.2f", total));
 
-			// ###Amount
-			// Let's you specify a payment amount.
-			Amount amount = new Amount();
-			amount.setCurrency("USD");
-			// Total must be equal to sum of shipping, tax and subtotal.
-			amount.setTotal("7");
-			amount.setDetails(details);
+		// ###Amount
+		// Let's you specify a payment amount.
+		Amount amount = new Amount();
+		amount.setCurrency("EUR");
+		// Total must be equal to sum of shipping, tax and subtotal.
+		amount.setTotal(String.format("%.2f", total));
+		amount.setDetails(details);
 
-			// ###Transaction
-			// A transaction defines the contract of a
-			// payment - what is the payment for and who
-			// is fulfilling it. Transaction is created with
-			// a `Payee` and `Amount` types
-			Transaction transaction = new Transaction();
-			transaction.setAmount(amount);
-			transaction
-					.setDescription("This is the payment transaction description.");
+		// ###Transaction
+		// A transaction defines the contract of a
+		// payment - what is the payment for and who
+		// is fulfilling it. Transaction is created with
+		// a `Payee` and `Amount` types
+		Transaction transaction = new Transaction();
+		transaction.setAmount(amount);
+		transaction.setDescription("Reserva en Hotel Rural Gran Maestre");
 
-			// ### Items
-			Item item = new Item();
-			item.setName("Ground Coffee 40 oz").setQuantity("1").setCurrency("USD").setPrice("5");
-			ItemList itemList = new ItemList();
-			List<Item> items = new ArrayList<Item>();
-			items.add(item);
-			itemList.setItems(items);
-			
-			transaction.setItemList(itemList);
-			
-			
-			// The Payment creation API requires a list of
-			// Transaction; add the created `Transaction`
-			// to a List
-			List<Transaction> transactions = new ArrayList<Transaction>();
-			transactions.add(transaction);
+		// ### Items
+		List<Reserva> listaReserva=(List<Reserva>) sesion.getAttribute("listaReservas");
+		ItemList itemList = new ItemList();
+		List<Item> items = new ArrayList<Item>();
+		Item item = new Item();
+		for (Reserva reser : listaReserva){
+			item.setName(reser.getHb().getNombre()).setQuantity("1").setCurrency("EUR").setPrice(String.format("%.2f", reser.getHb().getPrecio()));
+			items.add(item);	
+			item = new Item();
+		}
+		itemList.setItems(items);
 
-			// ###Payer
-			// A resource representing a Payer that funds a payment
-			// Payment Method
-			// as 'paypal'
-			Payer payer = new Payer();
-			payer.setPaymentMethod("paypal");
+		transaction.setItemList(itemList);
 
-			// ###Payment
-			// A Payment Resource; create one using
-			// the above types and intent as 'sale'
-			Payment payment = new Payment();
-			payment.setIntent("sale");
-			payment.setPayer(payer);
-			payment.setTransactions(transactions);
+		// The Payment creation API requires a list of
+		// Transaction; add the created `Transaction`
+		// to a List
+		List<Transaction> transactions = new ArrayList<Transaction>();
+		transactions.add(transaction);
 
-			// ###Redirect URLs
-			RedirectUrls redirectUrls = new RedirectUrls();
-			String guid = UUID.randomUUID().toString().replaceAll("-", "");
-			redirectUrls.setCancelUrl(req.getScheme() + "://"+ req.getServerName() + ":" + req.getServerPort()	+ req.getContextPath() + "/compraIncorrecta?guid=" + guid);
-			redirectUrls.setReturnUrl(req.getScheme() + "://"+ req.getServerName() + ":" + req.getServerPort()+ req.getContextPath() + "/compraCorrecta?guid=" + guid);
-			payment.setRedirectUrls(redirectUrls);
+		// ###Payer
+		// A resource representing a Payer that funds a payment
+		// Payment Method
+		// as 'paypal'
+		Payer payer = new Payer();
+		payer.setPaymentMethod("paypal");
 
-			
-			// Create a payment by posting to the APIService
-			// using a valid AccessToken
-			// The return object contains the status;
-			try {
-				createdPayment = payment.create(apiContext);
-				LOGGER.info("Created payment with id = "
-						+ createdPayment.getId() + " and status = "
-						+ createdPayment.getState());
-				// ###Payment Approval Url
-				Iterator<Links> links = createdPayment.getLinks().iterator();
-				while (links.hasNext()) {
-					Links link = links.next();
-					if (link.getRel().equalsIgnoreCase("approval_url")) {
-						redirect=link.getHref();
-					}
+		// ###Payment
+		// A Payment Resource; create one using
+		// the above types and intent as 'sale'
+		Payment payment = new Payment();
+		payment.setIntent("sale");
+		payment.setPayer(payer);
+		payment.setTransactions(transactions);
+
+		// ###Redirect URLs
+		RedirectUrls redirectUrls = new RedirectUrls();
+		String guid = UUID.randomUUID().toString().replaceAll("-", "");
+		redirectUrls.setCancelUrl(req.getScheme() + "://" + req.getServerName()
+				+ ":" + req.getServerPort() + req.getContextPath()
+				+ "/compraIncorrecta?guid=" + guid);
+		redirectUrls.setReturnUrl(req.getScheme() + "://" + req.getServerName()
+				+ ":" + req.getServerPort() + req.getContextPath()
+				+ "/compraCorrecta?guid=" + guid);
+		payment.setRedirectUrls(redirectUrls);
+
+		// Create a payment by posting to the APIService
+		// using a valid AccessToken
+		// The return object contains the status;
+		try {
+			createdPayment = payment.create(apiContext);
+			LOGGER.info("Created payment with id = " + createdPayment.getId()
+					+ " and status = " + createdPayment.getState());
+			// ###Payment Approval Url
+			Iterator<Links> links = createdPayment.getLinks().iterator();
+			while (links.hasNext()) {
+				Links link = links.next();
+				LOGGER.info(link.getHref());
+				if (link.getRel().equalsIgnoreCase("approval_url")) {
+					redirect = link.getHref();
 				}
-				map.put(guid, createdPayment.getId());
-			} catch (PayPalRESTException e) {
-				ResultPrinter.addResult(req, resp, "Payment with PayPal", Payment.getLastRequest(), null, e.getMessage());
 			}
+			map.put(guid, createdPayment.getId());
+		} catch (PayPalRESTException e) {
+			ResultPrinter.addResult(req, resp, "Payment with PayPal",
+					Payment.getLastRequest(), null, e.getMessage());
 		}
 		return createdPayment;
 	}

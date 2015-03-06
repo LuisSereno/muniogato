@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+
 <%
 log("Entramos en el JSP");
 HashMap mapaInformacion = (HashMap) request.getAttribute("habitaciones");
@@ -31,11 +32,13 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 %>
 
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> 
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/jqGalScroll.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/pro_dropdown_2.css" />
 	<link rel="stylesheet" type="text/css" href="estilos/component.css" />
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 	<title>Hotel Rural Gran Maestre</title>
 	
 	

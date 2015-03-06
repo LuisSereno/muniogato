@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+
 <div id="imagenAnonima" style="display:block;">
 	<img class="imagenLateralRegistrado" src="imagenes/general/usuarioNoRegistrado.png" alt="">
 </div>
@@ -15,7 +17,7 @@
 <br>
 <input class="informacionBannerLateral" name="nombreUsuario" id="nombreUsuario" value="Inserte su Usuario"><br>
 <br>
-<input class="informacionBannerLateral" name="contrasenaLateral" id="contrasenaLateral" value="Inserte su Contraseña" type="password"><br>
+<input class="informacionBannerLateral" name="contrasenaLateral" id="contrasenaLateral" value="Inserte su ContraseÃ±a" type="password"><br>
 <br>
 <div id="botonIniciarSesion" style="display:block;">
 	<button value="Iniciar" class="button orange" name="iniciarSesion" onclick="iniciarSesion();">Iniciar</button><br>
@@ -25,5 +27,5 @@
 </div>
 <br>
 <div  class="informacionBannerLateral" style="text-align: left;"><small>¿<span style="font-family: Calibri;">Todavía no se ha registrado</span>?
- <button style="background:transparent;"><a	name="Pulse_Aquí" onclick="registrarUsuario()" style="color: #0000B8">Pulse Aquí</a></button></small><br>
+ <button style="background:transparent;"><a	name="Pulse Aquí­" onclick="registrarUsuario()" style="color: #0000B8">Pulse Aquí</a></button></small><br>
 </div>

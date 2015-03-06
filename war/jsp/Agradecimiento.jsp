@@ -11,6 +11,7 @@ ArrayList <String> listaMensajesAgradecimiento = (ArrayList) request.getAttribut
 
 <html>
 	<head>
+	
 		<title><%=listaMensajesAgradecimiento.get(0)%></title>
 		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 		<script>

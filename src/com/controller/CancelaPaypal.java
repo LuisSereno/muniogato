@@ -13,10 +13,16 @@ import com.bean.Correos;
 import com.bean.Reserva;
 import com.bean.Usuario;
 import com.constantes.CONSTANTES;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+import com.paypal.util.GenerateAccessToken;
+import com.paypal.util.ResultPrinter;
 
 /**
- * Controller principal de la aplicación
- * Se llama desde la página inicial de la aplicación.
+ * Controller principal de la aplicaciï¿½n
+ * Se llama desde la pï¿½gina inicial de la aplicaciï¿½n.
  * @author Sereno
  *
  */
@@ -28,23 +34,24 @@ public class CancelaPaypal extends HttpServlet implements Serializable{
     private static final long serialVersionUID = 1L;
     
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(CancelaPaypal.class.getName());
     
     
     /**
-     * Método Post del servlet
+     * Mï¿½todo Post del servlet
      */
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
     	try {
+    			
     		log.info ("Entra en el servlet Cancelar");
     		
     		HttpSession sesion = req.getSession(false);
     		log.info("Antes de borrar la reserva");
     		borrarReserva(sesion);
-    		log.info("Después de borrar la reserva");
+    		log.info("Despuï¿½s de borrar la reserva");
 	        RequestDispatcher rd =null;
 	        req.setAttribute("despliege", "0");
 	        log.info("Despliegue 0");
@@ -56,7 +63,7 @@ public class CancelaPaypal extends HttpServlet implements Serializable{
 	    	
 		}catch (Exception e) {
 			log.info(e.getMessage());
-			log.info ("No se ha podido ir a la página web correcta porque ha ocurrido un error");
+			log.info ("No se ha podido ir a la pï¿½gina web correcta porque ha ocurrido un error");
 	        log.info("Redirigiendo...");
 	        e.printStackTrace();
 	        resp.sendRedirect("jsp/error.jsp");
@@ -66,7 +73,7 @@ public class CancelaPaypal extends HttpServlet implements Serializable{
     }
 
    /*
-    * Método Get del servlet
+    * Mï¿½todo Get del servlet
     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     	doPost(request, response);  

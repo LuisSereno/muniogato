@@ -71,7 +71,6 @@ function replaceAll(find, replace, str) {
  * Esta funcion cambia las fechas dependiendo de la habitacion y lo que tengas en el carrito
  */
 function reservasTiempoReal(output){
-	alert ("Entra en reservas tiempo real");
 	
 	if ($("#idRefHabitacion").val()!=null){
 		var cadenasHash=output['_values']['hashFechasOcupadas'];
@@ -95,7 +94,6 @@ function reservaHabitacion(idRef)
 	
 	params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
 	$.post('/accionReservar',params, function(output){
-		alert ("Vuelve de la accion de reservar");
 		$("#datepickerInicio").val("");
 		$("#datepickerFin").val("");
 		
@@ -118,7 +116,6 @@ function reservaHabitacion(idRef)
 				}
 				
 				$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
-					alert ("Load carrigo de compra");
 					for (datos in datosTotales){
 						anadirFilaTabla("#tablaCarrito",datosTotales[datos]);
 					}
@@ -165,7 +162,7 @@ function anadirFilaTabla(nomTabla,datos){
  */
 function anadirFilaTotal(tabla,total,tamano){
 	var tds ='<tr id="filaTotal">';
-	tds += '<td COLSPAN="'+tamano+'" id="cantidadTotal"><div style="text-align:right;">TOTAL: '+total+' �</div></td>';
+	tds += '<td COLSPAN="'+tamano+'" id="cantidadTotal"><div style="text-align:right;">TOTAL: '+total+' €</div></td>';
 	tds += '</tr>';
 	$(tabla).append(tds);
 	
@@ -496,7 +493,7 @@ function cambiaPaginaSesion(output,ingreso){
 					document.getElementById('spanTextNombre').firstChild.nodeValue = "";
 				}
 		}else{
-			alert ("ERROR!!!");
+			alert ("Ha ocurrido un error, disculpe las molestias: " + e);
 			document.body.style.cursor = "auto";
 		}
 	}catch (e){
@@ -655,7 +652,6 @@ function borrarReserva(idReserva){
 				var el = document.getElementById("PaginaDetallePago"); 
 				if (el.style.display=='block'){
 					parametros={"tipoPaypal":"DETALLE"};
-					alert ("ESTAMOS AQUI EN ESTE SITIO RARO");
 					$.post('/paypalButton',parametros, function(output){
 						boton=output;
 						borrarTabla("tablaDetalleCompra");
