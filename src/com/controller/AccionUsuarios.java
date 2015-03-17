@@ -25,8 +25,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Controller principal de la aplicación
- * Se llama desde la página inicial de la aplicación.
+ * Controller principal de la aplicaciï¿½n
+ * Se llama desde la pï¿½gina inicial de la aplicaciï¿½n.
  * @author Sereno
  *
  */
@@ -38,33 +38,32 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
     private static final long serialVersionUID = 1L;
     
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(AccionUsuarios.class.getName());
     
     
     /**
-     * Método Post del servlet
+     * Mï¿½todo Post del servlet
      */
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
     	try {
     		log.info ("Entra en el servlet AccionUsuarios");
-    		log.info ("ESTOS SON MIS COJONES TOREROS!!!");
     		HttpSession sesion = req.getSession(true);
     		Session sesionLocal= new Session();
     		
     		if (req.getParameter("ingreso")!=null && req.getParameter("ingreso")!=""&& "Alta".equals(req.getParameter("ingreso"))){
-    			log.info ("Va a insertarse un nuevo usuario en la aplicación");
+    			log.info ("Va a insertarse un nuevo usuario en la aplicaciï¿½n");
     			Usuario usu= new Usuario (req.getParameter("nombre"), req.getParameter("primerApellido"), req.getParameter("segundoApellido"), 
         				req.getParameter("dni"), req.getParameter("calle"), Integer.parseInt(req.getParameter("numero")), req.getParameter("ciudad"), req.getParameter("provincia"), req.getParameter("pais"), 
         				Integer.parseInt(req.getParameter("telefono")), req.getParameter("usuario"), req.getParameter("contrasena"), req.getParameter("email"));
 	    		String campoErroneo=this.comprobarCampos(usu);
 	    		boolean comprobacion="".equals(campoErroneo.trim());
-	    		log.info ("El campo erróneo es: " + campoErroneo);
+	    		log.info ("El campo errï¿½neo es: " + campoErroneo);
 	    		log.info("La comprobacion nos dice que: " + comprobacion);
 	    		if (comprobacion==true){
-	    			log.info("Si es true debemos de estar aquí");
+	    			log.info("Si es true debemos de estar aquï¿½");
 	    			if (usu.insertarElemento()==-1){
 	    				log.info ("El usuario ya existe");
 	    				sesion.setAttribute("nombre", "");
@@ -72,7 +71,7 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
 			    		sesion.setAttribute("error", "El usuario ya existe");
 	    			}else{
 	    				log.info ("Se ha dado de alta correctamente el usuario");
-	    				String mensaje="Te acabas de registrar en la web HOTEL RURAL GRAN MAESTRE, tu usuario es: " + req.getParameter("usuario") +" y tu contraseña es: " + req.getParameter("contrasena");
+	    				String mensaje="Te acabas de registrar en la web HOTEL RURAL GRAN MAESTRE, tu usuario es: " + req.getParameter("usuario") +" y tu contraseï¿½a es: " + req.getParameter("contrasena");
 	    				String asunto="Registro Hotel Rural Gran Maestre";
 	    				Correos corr= new Correos(req.getParameter("email"), mensaje, asunto, "INFO", req.getParameter("nombre"));
 	    	    		Usuario usuario= new Usuario();
@@ -92,7 +91,7 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
 	    		}else{
 	    			log.info ("Hay un campo erroneo y no se realiza el alta");
 		    		sesion.setAttribute("nombre", "");
-		    		sesion.setAttribute("error", "El campo "+campoErroneo+" es erróneo");
+		    		sesion.setAttribute("error", "El campo "+campoErroneo+" es errï¿½neo");
 	    		}
 	    		
 
@@ -110,15 +109,15 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
     				sesion.setAttribute("contrasena", usu.getContrasena());
     				sesion.setAttribute("error", "");
     			}else{
-    				log.info ("Error al ingresar en la aplicación");
+    				log.info ("Error al ingresar en la aplicaciï¿½n");
     				sesion.setAttribute("nombre", "");
     				sesion.setAttribute("usuario", "");
     				sesion.setAttribute("contrasena", "");
-    				sesion.setAttribute("error", "El usuario no existe, por favor inténtelo de nuevo.");
+    				sesion.setAttribute("error", "El usuario no existe, por favor intï¿½ntelo de nuevo.");
     			}
     			
     		}else{
-    			log.info ("Salimos de la sesión");
+    			log.info ("Salimos de la sesiï¿½n");
     			sesion.invalidate();
     		}
     		
@@ -137,7 +136,7 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
 	    	
 		}catch (Exception e) {
 			log.info(e.getMessage());
-			log.info ("No se ha podido ir a la página web correcta porque ha ocurrido un error");
+			log.info ("No se ha podido ir a la pï¿½gina web correcta porque ha ocurrido un error");
 	        log.info("Redirigiendo...");
 	        e.printStackTrace();
 	        resp.sendRedirect("jsp/error.jsp");
@@ -148,7 +147,7 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
 
 
    /**
-    * Método Get del servlet
+    * Mï¿½todo Get del servlet
     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     	doPost(request, response);  
@@ -203,25 +202,25 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
     	if (todoBien){
 	    	if (usu.getPais().indexOf("Escriba")!= -1 &&!(usu.getPais().length()>CONSTANTES.TAMANOCADENAMIN && usu.getPais().length()<=CONSTANTES.TAMANOUSUARIOMAX)){
 	    		todoBien= false;
-	    		campoErroneo="País";
+	    		campoErroneo="Paï¿½s";
 	    	}
     	}
     	if (todoBien){
 	    	if (usu.getContrasena().indexOf("Escriba")!= -1 &&!(usu.getContrasena().length()>CONSTANTES.TAMANOCONTRASENAMINIMA && usu.getContrasena().length()<=CONSTANTES.TAMANOUSUARIOMAX)){
 	    		todoBien= false;
-	    		campoErroneo="Contraseña";
+	    		campoErroneo="Contraseï¿½a";
 	    	}
     	}
     	if (todoBien){
 	    	if (!(usu.getTelefono()>CONSTANTES.TAMANOTELEFONOMIN && usu.getTelefono()<=CONSTANTES.TAMANOTELEFONOMAX)){
 	    		todoBien= false;
-	    		campoErroneo="Teléfono";
+	    		campoErroneo="Telï¿½fono";
 	    	}
     	}
     	if (todoBien){
 	    	if (!(usu.getNumero()>CONSTANTES.TAMANONUMEROMIN && usu.getNumero()<=CONSTANTES.TAMANONUMEROMAX)){
 	    		todoBien= false;
-	    		campoErroneo="Número";
+	    		campoErroneo="Nï¿½mero";
 	    	}
     	}
     	if (todoBien){
@@ -236,7 +235,7 @@ public class AccionUsuarios extends HttpServlet implements Serializable{
     			
     		if (!this.isEmail(usu.getCorreoElec())){
     			todoBien=false;
-    			campoErroneo="Correo Electrónico";
+    			campoErroneo="Correo Electrï¿½nico";
     		}
     	}
     	return campoErroneo;

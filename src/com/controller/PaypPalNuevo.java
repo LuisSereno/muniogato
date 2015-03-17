@@ -6,7 +6,9 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -147,8 +149,11 @@ public class PaypPalNuevo extends HttpServlet {
 		ItemList itemList = new ItemList();
 		List<Item> items = new ArrayList<Item>();
 		Item item = new Item();
+		
 		for (Reserva reser : listaReserva){
-			item.setName(reser.getHb().getNombre()).setQuantity("1").setCurrency("EUR").setPrice(String.format("%.2f", reser.getHb().getPrecio()));
+			item.setName(reser.getHb().getNombre() + " Fecha Entrada: " + reser.getFechaInicio() + " Fecha Salida: " + reser.getFechaFin())
+			.setQuantity(String.valueOf(AccionReserva.calcularNumeroDias(reser.getFechaInicio(), reser.getFechaFin())))
+			.setCurrency("EUR").setPrice(String.format("%.2f", reser.getHb().getPrecio()));
 			items.add(item);	
 			item = new Item();
 		}

@@ -24,7 +24,6 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 %>
 
 
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">  
 
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> 
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/jqGalScroll.css" />
@@ -129,7 +128,7 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 			<td>CIUDAD</td>
 			<td>PROVINCIA</td>
 			<td>PAIS</td>
-			<td>TELÃ‰FONO</td>
+			<td>TELÉFONO</td>
 			<td>EMAIL</td>
 			<td>FECHA ALTA</td>
 		</tr>

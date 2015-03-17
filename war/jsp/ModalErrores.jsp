@@ -25,6 +25,7 @@ $( "#dialog-message" ).dialog({
 	<%
 		String cadenaError="";
 		log("VALORES ERROR: " + request.getParameter("valoresError"));
+		log("VALORES TITULO: " + request.getParameter("titulo"));
 		if (request.getParameter("valoresError")!=null){
 			cadenaError=request.getParameter("valoresError");
 			String [] cadenaErrores=cadenaError.split(",");

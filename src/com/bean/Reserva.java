@@ -5,9 +5,7 @@ package com.bean;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -600,10 +598,10 @@ public class Reserva implements ConectaRecursos<Reserva>, Serializable{
 			String [] cadena = {String.valueOf(this.getNumFactura())};
 			List <String> listaCadena= new ArrayList<String>();
 			listaCadena=bbdd.leer(CONSTANTES.DEVOLVERFACTURA, cadena);
-			envioCorrecto=this.borrarFactura();
 			corr.setReferencia(Integer.parseInt(listaCadena.get(0).split("::")[1]));
 			corr.borrarCorreo();
 			this.borrarReservaFactura();
+			envioCorrecto=this.borrarFactura();
 			
 		}catch(Exception e){
 			envioCorrecto=false;

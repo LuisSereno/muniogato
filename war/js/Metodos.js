@@ -94,6 +94,7 @@ function reservaHabitacion(idRef)
 	
 	params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
 	$.post('/accionReservar',params, function(output){
+		
 		$("#datepickerInicio").val("");
 		$("#datepickerFin").val("");
 		
@@ -583,8 +584,7 @@ function atras(){
 function mostrarModal(errores){
 	try{
 
-		$("#paginaModal").load("jsp/ModalErrores.jsp", {titulo:"Error",valoresError:errores},function (){
-		});	
+		$("#paginaModal").load("jsp/ModalErrores.jsp", {titulo:"Error",valoresError:String(errores)});	
 		
 	}catch (e){
 		alert ("MODAL ERROR: " + e);
@@ -803,8 +803,7 @@ function enviarFactura(referencia){
 			
 			alert ("Ha ocurrido un error al enviar el mensaje, int&eacute;ntalo dentro de unos minutos");
 		}else{
-			
-			alert ("Actualiza el navegador para ver los cambios");
+			 location.reload();
 		}
 			
 	});
@@ -814,7 +813,6 @@ function enviarFactura(referencia){
 
 function borrarReservaFactura(referencia){
 	
-	alert ("Se va a borrar la reserva: " + referencia);
 	
 	params={"accion":"Borrar","referencia":referencia};
 	
@@ -824,8 +822,7 @@ function borrarReservaFactura(referencia){
 			
 			alert ("Ha ocurrido un error al borrar la reserva, int&eacute;ntalo dentro de unos minutos");
 		}else{
-			
-			alert ("Actualiza el navegador para ver los cambios");
+			 location.reload();
 		}
 			
 	});
@@ -847,7 +844,7 @@ function cambiarPago(referencia,pago){
 		if (output==false){
 			alert ("Ha ocurrido un error al cambiar el pago de la reserva, int&eacute;ntalo dentro de unos minutos");
 		}else{
-			alert ("Actualiza el navegador para ver los cambios");
+			 location.reload();
 		}
 			
 	});

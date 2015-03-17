@@ -49,14 +49,10 @@ public class CancelaPaypal extends HttpServlet implements Serializable{
     		log.info ("Entra en el servlet Cancelar");
     		
     		HttpSession sesion = req.getSession(false);
-    		log.info("Antes de borrar la reserva");
     		borrarReserva(sesion);
-    		log.info("Despu�s de borrar la reserva");
 	        RequestDispatcher rd =null;
 	        req.setAttribute("despliege", "0");
-	        log.info("Despliegue 0");
 	        rd=req.getRequestDispatcher("jsp/PaginaBasica.jsp");
-	        log.info("Antes del forward");
 	        rd.forward(req,resp);
 
 	    	log.info ("Sale del servlet Cancelar");

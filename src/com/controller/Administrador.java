@@ -84,7 +84,7 @@ public class Administrador extends HttpServlet implements Serializable{
     		}else if("Pagada".equals(req.getParameter("accion"))){
     			reser.setNumFactura(Integer.parseInt(req.getParameter("referencia")));
     			boolean resultado=false;
-    			if ("Y".equals(Integer.parseInt(req.getParameter("pago")))){
+    			if ("Y".equals(req.getParameter("pago"))){
     				if(reser.facturaPagada("N")!=-1){
     					resultado=true;
     				}

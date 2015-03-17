@@ -71,10 +71,7 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 <br>
 
 <div id="botonFormularioPaypal">
-	<a class="btn" href="/paymentwithpaypal">Pago</a>
-<!-- 	<button	value="Pago" class="button orange" name="Pago" type="submit">
-		<a href="/paymentwithpaypal"></a>
-	</button> -->
+	<input value="Pago Paypal" type="button" class="button orange" onclick="location.href='/paymentwithpaypal'" class="button">
 </div>
 
 <div id="avisoTipoCompra" style="margin-top: 15%">

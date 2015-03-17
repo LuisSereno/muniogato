@@ -104,7 +104,7 @@ public class CONSTANTES implements Serializable{
     /**
      * Constante de conexion con la base de datos
      */
-	public static final String CONSTANTECONEXION = "jdbc:google:rdbms://hotelruralbelen:instanciapruebas/hotelruralbelen";
+	public static final String CONSTANTECONEXION = "jdbc:google:rdbms://hotelruralbelen:instanciapruebas/hotelruralbelen?user=root";
 	
 	/**
 	 * 

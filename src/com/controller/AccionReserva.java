@@ -55,7 +55,7 @@ public class AccionReserva extends HttpServlet implements Serializable {
 			HttpSession sesion = req.getSession(false);
 			Session sesionLocal = new Session();
 
-			log.info("Comprobamos si se ha iniciado sesi�n");
+			log.info("Comprobamos si se ha iniciado sesión");
 			if (sesion != null) {
 				log.info("Comprobamos si se hay usuario");
 				if (sesion.getAttribute("usuario") != null) {
@@ -73,17 +73,17 @@ public class AccionReserva extends HttpServlet implements Serializable {
 							&& req.getParameter("diaInicio") != null) {
 						reser.setFechaFin(req.getParameter("diaFin"));
 						reser.setFechaInicio(req.getParameter("diaInicio"));
-						if (this.calcularNumeroDias(reser.getFechaInicio(),
+						if (calcularNumeroDias(reser.getFechaInicio(),
 								reser.getFechaFin()) > 0) {
-							log.info("Se cumplen los requisitos para reservar la habitaci�n");
+							log.info("Se cumplen los requisitos para reservar la habitación");
 							if ("Anadir".equals(req.getParameter("reserva")
 									.toString())) {
-								log.info("A�adimos habitaci�n al carrito");
+								log.info("Añadimos habitacion al carrito");
 								hb.setReferencia(Integer.parseInt(req
 										.getParameter("codigoHabitacion")));
 								hb = hb.devolverElemento();
 								hb.setNumeroHabitaciones(1);
-								log.info("Devuelve la habitaci�n");
+								log.info("Devuelve la habitación");
 								if (hb != null) {
 									salida = anadirListaReserva(req, gson,
 											cadenaErrores, sesion, sesionLocal,
@@ -128,7 +128,7 @@ public class AccionReserva extends HttpServlet implements Serializable {
 
 				}
 
-				log.info("Escribimos la salida en el objeto JSON");
+				log.info("Escribimos la salida en el objeto JSON: " + salida);
 				resp.setContentType("application/json");
 				PrintWriter out = resp.getWriter();
 
@@ -294,7 +294,7 @@ public class AccionReserva extends HttpServlet implements Serializable {
 
 				extraerFechasOcupadas(hb, listaReservas);
 
-				log.info("A�adimos la lista de reservas al atributo sesion");
+				log.info("Añadimos lista de reservas al atributo sesion");
 				sesion.setAttribute("listaReservas", listaReservas);
 				sesion.setAttribute("precioCarrito",
 						((Float) sesion.getAttribute("precioCarrito"))
@@ -305,35 +305,37 @@ public class AccionReserva extends HttpServlet implements Serializable {
 
 			} else {
 				cadenaErrores
-						.add("Por favor, ese rango de fechas no est&aacute; permitido");
+						.add("Por favor, ese rango de fechas no está permitido");
 				salida = gson.toJson(cadenaErrores);
 			}
 		} else {
-			log.info("La lista de reservas est� vac�a");
+			log.info("La lista de reservas está vacía");
 			List<Reserva> listaReservas = new ArrayList<Reserva>();
 			reser.setReferencia(1);
 			listaReservas.add(reser);
 			float precioTotalReserva = reser.getPrecioTotal();
-			log.info("Despu�s de a�adir el precio total");
+			log.info("Después de añadir el precio total");
 			if (hb.comprobarRangoFechas(reser.getFechaInicio(),
 					reser.getFechaFin(), listaReservas)) {
+				log.info("NO COMPRUEBA EL RANGO DE FECHAS BIEN");
 				List<String[]> listaFechasOcupadas = comprobarReservaHabitaciones(
 						listaReservas, hb);
 				refFechasReser.put(String.valueOf(hb.getReferencia()),
 						listaFechasOcupadas);
-				log.info("A�adimos las reservas al atributo sesion");
+				log.info("Añadimos las reservas al atributo sesion");
 				sesion.setAttribute("listaReservas", listaReservas);
 				sesion.setAttribute("precioCarrito", precioTotalReserva);
 				sesion.setAttribute("hashFechasOcupadas", refFechasReser);
 				sesionLocal.copiarSesion(sesion);
 				salida = gson.toJson(sesionLocal);
 			} else {
-
+				log.info("COMPRUEBA EL RANGO DE FECHAS BIEN");
 				cadenaErrores
-						.add("Por favor, ese rango de fechas no est&aacute; permitido");
+						.add("Por favor, ese rango de fechas no está permitido");
 				salida = gson.toJson(cadenaErrores);
 			}
 		}
+		log.info("salida es: "  +  salida);
 		return salida;
 	}
 
@@ -372,28 +374,21 @@ public class AccionReserva extends HttpServlet implements Serializable {
 
 		float precioTotal = 0;
 
-		precioTotal = this.calcularNumeroDias(fechaInicio, fechaFin)
-				* precioHabitacion;
+		precioTotal = calcularNumeroDias(fechaInicio, fechaFin) * precioHabitacion;
 
 		return precioTotal;
 	}
 
-	private int calcularNumeroDias(String fechaInicio, String fechaFin) {
+	public static int calcularNumeroDias(String fechaInicio, String fechaFin) {
 
-		log.info("LA FECHA DE INICIO ES: " + fechaInicio);
-		log.info("LA FECHA DE FIN ES: " + fechaFin);
 		String fechaInicioOrdernada = fechaInicio.replace("/", "");
 		String fechaFinOrdenada = fechaFin.replace("/", "");
-
-		log.info("LA FECHA DE INICIO ORDENADA ES: " + fechaInicioOrdernada);
-		log.info("LA FECHA DE FIN ORDENADA ES: " + fechaFinOrdenada);
 
 		int numDias = Integer.parseInt(fechaFinOrdenada)
 				- Integer.parseInt(fechaInicioOrdernada);
 		if (numDias == 0) {
 			numDias = 1;
 		}
-		log.info("EL NUMERO DE DIAS ES: " + numDias);
 		return numDias;
 	}
 

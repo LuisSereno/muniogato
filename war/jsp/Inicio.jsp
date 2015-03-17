@@ -42,19 +42,7 @@
 	<br>
 	<br>
 	<br>
-<!--  	<div id="videoInicio" style="margin-left: 15%">
-		<object width="900" height="500"><param name="movie"
-		value="//www.youtube.com/v/pfloiGoW5yk?version=3&amp;autoplay=1;loop=1;disablekb=1;showinfo=0;showsearch=0;egm=1;hl=es_ES&amp;rel=0"><param
-		name="allowFullScreen" value="true"><param name="allowscriptaccess"
-		value="always">
-		<embed src="//www.youtube.com/v/pfloiGoW5yk?version=3&amp;autoplay=1;loop=1;egm=1;showinfo=0;showsearch=0;disablekb=1;hl=es_ES&amp;rel=0"
-		type="application/x-shockwave-flash" allowscriptaccess="always"
-		allowfullscreen="true" width="900" height="500"></object>
-	</div> 
-	<br>
-	<br>
-	<br> -->
- 	<table class="tablaInicio">
+<!--  	<table class="tablaInicio">
 		<tbody>
 		<tr>
 			<td >		
@@ -73,7 +61,7 @@
 			</td>
 		</tr>
 		</tbody>
-	</table>  
+	</table>   -->
 	<br>
 	<br>
 </body>

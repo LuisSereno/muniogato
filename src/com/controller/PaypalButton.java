@@ -199,6 +199,7 @@ public class PaypalButton extends HttpServlet implements Serializable{
 				reser.actualizarReserva();
 			}
 			
+			sesion.setAttribute("idReservas", numerosReservas);
 			sesion.setAttribute("numeroFactura", numeroFactura);
 			sesion.setAttribute("correosFactura", correos);
 			sesion.setAttribute("compraRealizada", "OK");
