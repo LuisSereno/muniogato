@@ -22,6 +22,22 @@ body {
 	height:99%;
 }
 
+.listadoHabitaciones{
+	float: left; 
+	margin-left: 10%; 
+	width: 50%;
+	margin-top: 1%;
+}
+
+.listadoHabitaciones img{
+	border-radius: 15% 15%; /* Borde redondeado */
+	box-shadow: 0px 0px 15px #000; /* Sombra */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	cursor:pointer;
+}
+	
 .bodyHistoria{
 	width:90%;
 	height:100%;
@@ -195,6 +211,15 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	height:100%;
 }
 
+.tamanoImagenes img{
+	border-radius: 15% 15%; /* Borde redondeado */
+	box-shadow: 0px 0px 15px #000; /* Sombra */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	cursor:pointer;
+}
+
 .tablaInicio{
 	text-align: center; 
 	width: 70%;
@@ -291,12 +316,19 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	
 }
 
-
+#RESERVA{
+	display: block;
+}
+	
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
 	
 
 	#todasHabitaciones{
 		width: 130%;
+	}
+	
+	#RESERVA{
+		display: none;
 	}
 	
 	
@@ -403,6 +435,15 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	.tamanoImagenes{
 		width:50%;
 		height:50%;
+	}
+	
+	.tamanoImagenes img{
+		border-radius: 15% 15%; /* Borde redondeado */
+		box-shadow: 0px 0px 15px #000; /* Sombra */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		cursor:pointer;
 	}
 	
 	.tablaInicio{
@@ -525,6 +566,14 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	.tamanoImagenes{
 		width:50%;
 		height:50%;
+	}
+	.tamanoImagenes img{
+		border-radius: 15% 15%; /* Borde redondeado */
+		box-shadow: 0px 0px 15px #000; /* Sombra */
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+		-o-transition: all 1s;
+		cursor:pointer;
 	}
 
 	.tamanoImagenes div{

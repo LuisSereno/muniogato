@@ -91,49 +91,54 @@ function reservasTiempoReal(output){
 function reservaHabitacion(idRef)
 {
 	document.body.style.cursor = "wait";
-	
-	params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
-	$.post('/accionReservar',params, function(output){
-		
-		$("#datepickerInicio").val("");
-		$("#datepickerFin").val("");
-		
-		if (output['_values']!=null){
-			if (output['_values'].error!=null || output['_values'].error!=""){
-			
-				//Actualizamos las fechas de los calendarios para empezar
-				reservasTiempoReal(output);
-
-				var datosTotales=[];
-				var listaReser=output['_values'].listaReservas;
-				var total=output['_values'].precioCarrito;
-				var datos=[];
-				for (dat in listaReser){
-		
-					var dias=parseInt(replaceAll("/", "", listaReser[dat].fechaFin))-parseInt(replaceAll("/", "", listaReser[dat].fechaInicio));
-					datos= [listaReser[dat].referencia,listaReser[dat].hb.nombre,dias,listaReser[dat].precioTotal];
-					datosTotales.push(datos);
-					
-				}
-				
-				$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
-					for (datos in datosTotales){
-						anadirFilaTabla("#tablaCarrito",datosTotales[datos]);
-					}
-					anadirFilaTotal("#tablaCarrito",total,3);
-					
-					if (document.getElementById){ 
-						var el = document.getElementById("carritoCompra"); 
-						el.style.display = 'block'; 
-					}
-				});	
-			
-			}
-		}else{
-			mostrarModal(output);
-		}
+	if ($('#datepickerInicio').val()=="" || $('#datepickerFin').val()==""){
+		mostrarModal("Seleccione una fecha de inicio y de fin");
 		document.body.style.cursor = "auto";
-	});	
+	}else{
+		params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
+		$.post('/accionReservar',params, function(output){
+			
+			$("#datepickerInicio").val("");
+			$("#datepickerFin").val("");
+			
+			if (output['_values']!=null){
+				if (output['_values'].error!=null || output['_values'].error!=""){
+				
+					//Actualizamos las fechas de los calendarios para empezar
+					reservasTiempoReal(output);
+
+					var datosTotales=[];
+					var listaReser=output['_values'].listaReservas;
+					var total=output['_values'].precioCarrito;
+					var datos=[];
+					for (dat in listaReser){
+			
+						var dias=parseInt(replaceAll("/", "", listaReser[dat].fechaFin))-parseInt(replaceAll("/", "", listaReser[dat].fechaInicio));
+						datos= [listaReser[dat].referencia,listaReser[dat].hb.nombre,dias];
+						datosTotales.push(datos);
+						
+					}
+					alert ("datos:  " + datos);
+					$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
+						for (datos in datosTotales){
+							anadirFilaTabla("#tablaCarrito",datosTotales[datos]);
+						}
+						anadirFilaTotal("#tablaCarrito",total,3);
+						
+						if (document.getElementById){ 
+							var el = document.getElementById("carritoCompra"); 
+							el.style.display = 'block'; 
+						}
+					});	
+				
+				}
+			}else{
+				mostrarModal(output);
+			}
+			document.body.style.cursor = "auto";
+		});	
+	}
+
 }
 
 /**

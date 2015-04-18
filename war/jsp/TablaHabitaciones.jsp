@@ -31,7 +31,7 @@ log ("TERMINAMOS DE CARGAR LOS ARRAYS");
 			
 			</div>
 			<div style="width: 100%; height: 100%; ">
-				<div style="float: left; margin-left: 10%; width: 50%;">
+				<div class="listadoHabitaciones">
 					<img style="width: 50%;" src='<%=habita.getFotos().get(0)%>'>
 				</div>
 				

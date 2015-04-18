@@ -15,12 +15,12 @@
 	<span style="font-family: Calibri;"></span>
 </div>
 <br>
-<input class="informacionBannerLateral" name="nombreUsuario" id="nombreUsuario" value="Inserte su Usuario"><br>
+<input class="informacionBannerLateral" name="nombreUsuario" onfocus="if (this.value=='Inserte su Usuario') this.value='';" id="nombreUsuario" value="Inserte su Usuario"><br>
 <br>
-<input class="informacionBannerLateral" name="contrasenaLateral" id="contrasenaLateral" value="Inserte su ContraseÃ±a" type="password"><br>
+<input class="informacionBannerLateral" name="contrasenaLateral" onfocus="if (this.value=='Inserte su Contraseña') this.value='';" id="contrasenaLateral" value="Inserte su Contraseña" type="password"><br>
 <br>
 <div id="botonIniciarSesion" style="display:block;">
-	<button value="Iniciar" class="button orange" name="iniciarSesion" onclick="iniciarSesion();">Iniciar</button><br>
+	<button value="Iniciar" class="button orange" name="iniciarSesion"  onclick="iniciarSesion();">Iniciar</button><br>
 </div>
 <div id="botonDesconectar" style="display:none;">
 	<button value="desconectar" class="button orange" name="desconectar" id="desconectar" onclick="salirSesion();">Salir</button><br>

@@ -92,8 +92,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <servlet-mapping>
         <servlet-name>pantallaAdministrador</servlet-name>
         <url-pattern>/pantallaAdministrador</url-pattern>
-    </servlet-mapping>
-    
+    </servlet-mapping> 
     
     
     <welcome-file-list>

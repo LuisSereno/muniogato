@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> 
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/jqGalScroll.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/pro_dropdown_2.css" />
+	 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
 	
 
 <title>Inicio</title>
@@ -42,26 +44,26 @@
 	<br>
 	<br>
 	<br>
-<!--  	<table class="tablaInicio">
+  	<table class="tablaInicio">
 		<tbody>
 		<tr>
 			<td >		
-				<img src="imagenes/inicio/20130918_190748.jpg"/>
+				<img title="Venga a conocer la historia del lugar" src="imagenes/inicio/20130918_190748_opt.jpg"/>
 			</td>
 			<td>
-				<img src="imagenes/inicio/20131203_132055.jpg"/>
+				<img title="Reserva una habitaci&oacute;n" src="imagenes/inicio/20131203_132055_opt.jpg"/>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<img src="imagenes/inicio/20140224_172911.jpg"/>
+				<img title="Venga a conocer las actividades del lugar" src="imagenes/inicio/20140224_172911_opt.jpg"/>
 			</td>
 			<td>
-				<img src="imagenes/inicio/DSC_0029.jpg"/>
+				<img title="Cont&aacute;cte con nosotros, no se arrepentir&aacute;" src="imagenes/inicio/DSC_0029_opt.jpg"/>
 			</td>
 		</tr>
 		</tbody>
-	</table>   -->
+	</table>   
 	<br>
 	<br>
 </body>

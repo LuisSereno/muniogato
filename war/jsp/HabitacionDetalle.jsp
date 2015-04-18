@@ -76,7 +76,11 @@
 							    maxDate: null,
 							    minDate: '+0d',
 							    dateFormat: 'dd/mm/yy',
-							     beforeShowDay: DisableDays
+							     beforeShowDay: DisableDays,
+							     showButtonPanel: false,
+							     onClose: function (selectedDate) {
+									$("#datepickerFin").datepicker("option", "minDate", selectedDate);
+								}
 							});
 								
 						</script>
@@ -91,8 +95,14 @@
 							    maxDate: null,
 							    minDate: '+0d',
 							    dateFormat: 'dd/mm/yy',
-							    beforeShowDay: DisableDays 
+							    beforeShowDay: DisableDays ,
+							    showButtonPanel: false,
+							    onClose: function (selectedDate) {
+									$("#from").datepicker("option", "maxDate", selectedDate);
+								}
 							});
+							
+							//http://www.desarrolloweb.com/articulos/jquery-ui-datepicker-avanzado.html
 								
 						</script>
 						
@@ -125,9 +135,13 @@
 			</div>
 			<div id="contenedorInferior" style="clear:both;width: 100%;height: 20%;">
 				<div style="text-align: left; margin-left: 5%;"> <%=request.getParameter("descripcion")%></div>
-				<div style="text-align: right; float: right; margin-top: 3%; height: 10%;">
-					<button	value="ATRAS" class="button orange" name="ATRAS" type="reset" onclick="atras();">Atrás</button>&nbsp;&nbsp;&nbsp;
- 					<button	value="RESERVA" class="button orange" name="RESERVA" id="RESERVA" type="submit" onclick="reservaHabitacion('<%=request.getParameter("idRef")%>')">Reserva</button>&nbsp;&nbsp;&nbsp;
+				<div style="float: right; margin-top: 3%;">
+					<div style="display:inline-block;">
+						<button	value="ATRAS" class="button orange" name="ATRAS" type="reset" onclick="atras();">Atrás</button>
+					</div>
+					<div style="display:inline-block;">
+	 					<button	value="RESERVA" class="button orange" name="RESERVA" id="RESERVA" type="submit" onclick="reservaHabitacion('<%=request.getParameter("idRef")%>')">Reserva</button>
+					</div>
 					<br>
 				</div> 
 			</div> 

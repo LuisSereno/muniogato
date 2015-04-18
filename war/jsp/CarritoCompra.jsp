@@ -9,7 +9,7 @@
 <br>
 <br>
 
-<table id="tablaCarrito" border="5" class ="bannerLateralCarritoTabla">
+<table id="tablaCarrito" border="3" class ="bannerLateralCarritoTabla">
 
 	<tbody>
 	<tr id="Cabecera">

@@ -352,6 +352,24 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 				animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
 			});
 		});
+		
+		$(function() {
+		    $( document ).tooltip({
+		      position: {
+		        my: "center bottom-20",
+		        at: "center top",
+		        using: function( position, feedback ) {
+		          $( this ).css( position );
+		          $( "<div>" )
+		            .addClass( "arrow" )
+		            .addClass( feedback.vertical )
+		            .addClass( feedback.horizontal )
+		            .appendTo( this );
+		        }
+		      }
+		    });
+		  });
+  
 	</script>
 		
 </body>

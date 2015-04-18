@@ -22,7 +22,7 @@
 					<label>Nombre:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id="nombre" name="nombre" value="Escriba aquí su nombre">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';"  id="nombre" name="nombre" value="Escriba aquí su nombre">
 				</div>
 			</div>
 			<br>
@@ -32,7 +32,7 @@
 					<label>Primer Apellido:</label> 
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id="primerApellido" name="primerApellido" value="Escriba aquí su primer apellido">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id="primerApellido" name="primerApellido" value="Escriba aquí su primer apellido">
 				</div>
 			</div>	
 			<br>
@@ -42,7 +42,7 @@
 					<label>DNI:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="dni" name="dni" value="Escriba aquí su DNI">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="dni" name="dni" value="Escriba aquí su DNI">
 				</div>
 			</div>
 			<br>
@@ -52,7 +52,7 @@
 					<label>Calle:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="calle" name="calle" value="Escriba aquí su calle">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="calle" name="calle" value="Escriba aquí su calle">
 				</div>
 			</div>
 			<br>
@@ -62,7 +62,7 @@
 					<label>Ciudad:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="ciudad" name="ciudad" value="Escriba aquí la ciudad de su domicilio">
+					<input onfocus="if (this.value.indexOf('Escriba aquí la')!=-1) this.value='';" id ="ciudad" name="ciudad" value="Escriba aquí la ciudad de su domicilio">
 				</div>
 			</div>
 			<br>
@@ -72,7 +72,7 @@
 					<label>Usuario</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="usuario" name="usuario" value="Escriba aquí su usuario">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="usuario" name="usuario" value="Escriba aquí su usuario">
 				</div>
 			</div>
 			<br>
@@ -82,7 +82,7 @@
 					<label>Email:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="email" name="email" value="Escriba aquí su email">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="email" name="email" value="Escriba aquí su email">
 				</div>
 			</div>
 
@@ -93,7 +93,7 @@
 					<label>Teléfono:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="telefono" name="telefono" value="Escriba aquí su teléfono">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="telefono" name="telefono" value="Escriba aquí su teléfono">
 				</div>
 				
 			</div>
@@ -104,7 +104,7 @@
 					<label>Segundo Apellido:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="segundoApellido" name="segundoApellido" value="Escriba aquí su segundo apellido">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="segundoApellido" name="segundoApellido" value="Escriba aquí su segundo apellido">
 				</div>
 			</div>
 			<br>
@@ -114,7 +114,7 @@
 					<label>País:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="pais" name="pais" value="Escriba aquí el país de su domicilio">
+					<input onfocus="if (this.value.indexOf('Escriba aquí el')!=-1) this.value='';" id ="pais" name="pais" value="Escriba aquí el país de su domicilio">
 				</div>
 			</div>
 			<br>
@@ -124,7 +124,7 @@
 					<label>Número:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="numero" name="numero" value="Escriba aquí el número de su casa">
+					<input onfocus="if (this.value.indexOf('Escriba aquí el')!=-1) this.value='';" id ="numero" name="numero" value="Escriba aquí el número de su casa">
 				</div>
 			</div>
 			<br>
@@ -134,7 +134,7 @@
 					<label>Provincia:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="provincia"	name="provincia" value="Escriba aquí la provincia de su domicilio">
+					<input onfocus="if (this.value.indexOf('Escriba aquí la')!=-1) this.value='';" id ="provincia"	name="provincia" value="Escriba aquí la provincia de su domicilio">
 				</div>
 			</div>
 			<br>
@@ -144,7 +144,7 @@
 					<label>Contraseña:</label>
 				</div>
 				<div style="display: inline-block; width: 30%;">
-					<input id ="contrasena" name="contrasena" value="Escriba aquí su contraseña" type="password">
+					<input onfocus="if (this.value.indexOf('Escriba aquí su')!=-1) this.value='';" id ="contrasena" name="contrasena" value="Escriba aquí su contraseña" type="password">
 				</div>
 			</div>
 			<br>

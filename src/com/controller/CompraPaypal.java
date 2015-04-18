@@ -107,6 +107,8 @@ public class CompraPaypal extends HttpServlet implements Serializable{
     				log.info(createdPayment.getIntent());
     				log.info(createdPayment.getUpdateTime());
     				log.info(createdPayment.getPayer().toJSON());
+    				log.info(createdPayment.toJSON());
+    				log.info(createdPayment.toString());
     			} catch (PayPalRESTException e) {
     				log.warning(e.getLocalizedMessage() + e.getMessage());
     				log.warning(e.getStackTrace().toString());
