@@ -118,7 +118,6 @@ function reservaHabitacion(idRef)
 						datosTotales.push(datos);
 						
 					}
-					alert ("datos:  " + datos);
 					$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
 						for (datos in datosTotales){
 							anadirFilaTabla("#tablaCarrito",datosTotales[datos]);
@@ -168,7 +167,7 @@ function anadirFilaTabla(nomTabla,datos){
  */
 function anadirFilaTotal(tabla,total,tamano){
 	var tds ='<tr id="filaTotal">';
-	tds += '<td COLSPAN="'+tamano+'" id="cantidadTotal"><div style="text-align:right;">TOTAL: '+total+' €</div></td>';
+	tds += '<td COLSPAN="'+tamano+'" id="cantidadTotal"><div style="text-align:right;"><b>TOTAL:</b> '+total+' €</div></td>';
 	tds += '</tr>';
 	$(tabla).append(tds);
 	

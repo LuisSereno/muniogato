@@ -37,6 +37,15 @@ body {
 	-o-transition: all 1s;
 	cursor:pointer;
 }
+
+.curvadoImagenes{
+	border-radius: 15% 15%; /* Borde redondeado */
+	box-shadow: 0px 0px 15px #000; /* Sombra */
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	cursor:pointer;
+}
 	
 .bodyHistoria{
 	width:90%;
@@ -267,10 +276,12 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
  	width: 10%; 
  	height: 100%; 
  	text-align: center;
+ 	font-size:0.6em;
  }
  
  .textoActividades{
  	margin-left:15%;
+ 	font-size:1.6em;
  }
  
  .camposFormulario{
@@ -322,6 +333,10 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
 	
+	.informacionBannerLateral{
+		width: 100%; 
+	}
+	
 
 	#todasHabitaciones{
 		width: 130%;
@@ -358,7 +373,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	
 	 .textoActividades{
 	 	margin-left:15%;
-	 	font-size: 100%;
+	 	font-size:0.6em;
 	 }
  
 	.bodyHistoria{
@@ -379,6 +394,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 		font-size: larger;
 		font-family:sans-serif;
 		width: 160%;
+		font-size:0.6em;
 	} 
 	
 
@@ -490,7 +506,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	}
 	
 	#todasHabitaciones{
-		width: 130%;
+		width: 100%;
 	}
 	
 	

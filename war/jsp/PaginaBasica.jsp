@@ -225,7 +225,7 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 								
 								<br>
 								</td>
-								<td style="vertical-align: top; width: 10%; height: 100%; text-align: center;">
+								<td style="vertical-align: top; width: 10%; height: 100%; text-align: center;font-size:0.3em">
 									<div id="carritoCompra" style="display:none">
 										<jsp:include page="CarritoCompra.jsp"></jsp:include>
 									</div>

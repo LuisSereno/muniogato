@@ -48,18 +48,18 @@
 		<tbody>
 		<tr>
 			<td >		
-				<img title="Venga a conocer la historia del lugar" src="imagenes/inicio/20130918_190748_opt.jpg"/>
+				<img onclick="pulsado(2);" title="Venga a conocer la historia del lugar" src="imagenes/inicio/20130918_190748_opt.jpg"/>
 			</td>
 			<td>
-				<img title="Reserva una habitaci&oacute;n" src="imagenes/inicio/20131203_132055_opt.jpg"/>
+				<img onclick="pulsado(1);" title="Reserva una habitaci&oacute;n" src="imagenes/inicio/20131203_132055_opt.jpg"/>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<img title="Venga a conocer las actividades del lugar" src="imagenes/inicio/20140224_172911_opt.jpg"/>
+				<img onclick="pulsado(7);" title="Venga a conocer las actividades del lugar" src="imagenes/inicio/20140224_172911_opt.jpg"/>
 			</td>
 			<td>
-				<img title="Cont&aacute;cte con nosotros, no se arrepentir&aacute;" src="imagenes/inicio/DSC_0029_opt.jpg"/>
+				<img onclick="pulsado(3);" title="Cont&aacute;cte con nosotros, no se arrepentir&aacute;" src="imagenes/inicio/DSC_0029_opt.jpg"/>
 			</td>
 		</tr>
 		</tbody>

@@ -26,6 +26,6 @@
 	<button value="desconectar" class="button orange" name="desconectar" id="desconectar" onclick="salirSesion();">Salir</button><br>
 </div>
 <br>
-<div  class="informacionBannerLateral" style="text-align: left;"><small>¿<span style="font-family: Calibri;">Todavía no se ha registrado</span>?
+<div  class="informacionBannerLateral" style="text-align: left;"><small>¿<span style="font-family: Calibri;font-size:larger;">Todavía no se ha registrado</span>?
  <button style="background:transparent;"><a	name="Pulse Aquí­" onclick="registrarUsuario()" style="color: #0000B8">Pulse Aquí</a></button></small><br>
 </div>

@@ -50,7 +50,7 @@
 						
 			  			for (int i=0;i<cadenaHabitaciones.length;i++){
 			  			%>
-			  			<li><img src="<%=cadenaHabitaciones[i]%>"/></li>
+			  			<li><img class="curvadoImagenes" src="<%=cadenaHabitaciones[i]%>"/></li>
 			  			<%
 			  			}
 			  			%>
@@ -98,7 +98,7 @@
 							    beforeShowDay: DisableDays ,
 							    showButtonPanel: false,
 							    onClose: function (selectedDate) {
-									$("#from").datepicker("option", "maxDate", selectedDate);
+									$("#datepickerInicio").datepicker("option", "maxDate", selectedDate);
 								}
 							});
 							
