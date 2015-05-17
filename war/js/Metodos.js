@@ -10,6 +10,10 @@ var RangeDatesIsDisable = true;
  */
 function pulsado(num)
 {
+	window.parent.document.body.style.zoom="100%";
+	if  (precioTotalCarrito!=null && precioTotalCarrito!=0){
+		$("#carritoCompra").css("display","block");		
+	}
 	$("#valorMenu").val(num);
 	document.forms["formMenu"].submit();
 	
@@ -90,52 +94,60 @@ function reservasTiempoReal(output){
  */
 function reservaHabitacion(idRef)
 {
-	document.body.style.cursor = "wait";
-	if ($('#datepickerInicio').val()=="" || $('#datepickerFin').val()==""){
-		mostrarModal("Seleccione una fecha de inicio y de fin");
-		document.body.style.cursor = "auto";
+	document.body.style.cursor = "wait";	
+	var userRegister=document.getElementById('sesionUsuario').value;
+	var idUsuRepren=document.getElementById('idUsuRepresentado').value;
+	if (userRegister=="admin" && idUsuRepren==""){
+		alert ("Saca la modal de usuarios");
+		modalUsuarios(idRef);
 	}else{
-		params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
-		$.post('/accionReservar',params, function(output){
-			
-			$("#datepickerInicio").val("");
-			$("#datepickerFin").val("");
-			
-			if (output['_values']!=null){
-				if (output['_values'].error!=null || output['_values'].error!=""){
-				
-					//Actualizamos las fechas de los calendarios para empezar
-					reservasTiempoReal(output);
-
-					var datosTotales=[];
-					var listaReser=output['_values'].listaReservas;
-					var total=output['_values'].precioCarrito;
-					var datos=[];
-					for (dat in listaReser){
-			
-						var dias=parseInt(replaceAll("/", "", listaReser[dat].fechaFin))-parseInt(replaceAll("/", "", listaReser[dat].fechaInicio));
-						datos= [listaReser[dat].referencia,listaReser[dat].hb.nombre,dias];
-						datosTotales.push(datos);
-						
-					}
-					$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
-						for (datos in datosTotales){
-							anadirFilaTabla("#tablaCarrito",datosTotales[datos]);
-						}
-						anadirFilaTotal("#tablaCarrito",total,3);
-						
-						if (document.getElementById){ 
-							var el = document.getElementById("carritoCompra"); 
-							el.style.display = 'block'; 
-						}
-					});	
-				
-				}
-			}else{
-				mostrarModal(output);
-			}
+		if ($('#datepickerInicio').val()=="" || $('#datepickerFin').val()==""){
+			mostrarModal("Seleccione una fecha de inicio y de fin");
 			document.body.style.cursor = "auto";
-		});	
+		}else{
+			params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
+			$.post('/accionReservar',params, function(output){
+				
+				$("#datepickerInicio").val("");
+				$("#datepickerFin").val("");
+				
+				if (output['_values']!=null){
+					if (output['_values'].error!=null || output['_values'].error!=""){
+						
+					
+						//Actualizamos las fechas de los calendarios para empezar
+						reservasTiempoReal(output);
+
+						var datosTotales=[];
+						var listaReser=output['_values'].listaReservas;
+						var total=output['_values'].precioCarrito;
+						var datos=[];
+						for (dat in listaReser){
+							var dias=parseInt(replaceAll("/", "", listaReser[dat].fechaFin))-parseInt(replaceAll("/", "", listaReser[dat].fechaInicio));
+							datos= [listaReser[dat].referencia,listaReser[dat].hb.nombre,dias,listaReser[dat].precioTotal];
+							datosTotales.push(datos);
+							
+						}
+						$("#carritoCompra").load("jsp/CarritoCompra.jsp", {"datos":datos,"total":total,"usuario":$("#sesionUsuario").val()}, function (){
+							for (datos in datosTotales){
+								anadirFilaTabla("#tablaCarrito",datosTotales[datos],2);
+							}
+							anadirFilaTotal("#tablaCarrito",total,3);
+							
+							if (document.getElementById){ 
+								var el = document.getElementById("carritoCompra"); 
+								el.style.display = 'block'; 
+							}
+						});	
+					
+					}
+				}else{
+					mostrarModal(output);
+				}
+				document.body.style.cursor = "auto";
+			});	
+		}
+
 	}
 
 }
@@ -143,13 +155,18 @@ function reservaHabitacion(idRef)
 /**
  * 
  */
-function anadirFilaTabla(nomTabla,datos){
+function anadirFilaTabla(nomTabla,datos,campo){
 	var n = $('tr:last td', $(nomTabla)).length;
 	var tds = '<tr id="'+ datos[0]+'">';
+	if (campo==null){
+		campo=0;
+	}
 	for(var i = 1; i <= n; i++){
 		if (datos[i]!=null){
-			if (datos[i].toString().indexOf("imagenes/")!=-1){
-				tds += '<td  width="15%" height="15%"> <img width="100%" height="25%" alt="Imagen'+i+'" src="'+datos[i]+'"/></td>';
+			if (campo==i){
+				tds += '<td  class="tablaCarritoDias">' +datos[i]+'</td>';
+			}else if (datos[i].toString().indexOf("imagenes/")!=-1){
+				tds += '<td  class="imagenTabla"> <img height="25%" alt="Imagen'+i+'" src="'+datos[i]+'"/></td>';
 			}else{
 				tds += '<td>'+datos[i]+'</td>';	
 			}
@@ -555,6 +572,8 @@ function iniciarSesion(){
 			   contrasena:$("#contrasenaLateral").val(),
 			   ingreso:"Ingreso"
 		    };
+	document.getElementById('sesionUsuario').value =$("#nombreUsuario").val();
+	
 	$.post('/registraUsuarios',datos, function(output){
 		cambiaPaginaSesion(output,datos["ingreso"]);
 		document.body.style.cursor = "auto";
@@ -770,7 +789,7 @@ function ventanaPago(){
 	$("#desconectar").prop("disabled",true);
 	$("#RESERVA").prop("disabled",true);
 	$("#pagoTotalCarrito").prop("disabled",true);
-	
+	$("#carritoCompra").css("display","none");
 	$.post('/paypalButton',params, function(output){
 		detalleVentanaPago();
 		document.body.style.cursor = "auto";
@@ -855,31 +874,41 @@ function cambiarPago(referencia,pago){
 	
 }
 
-function modalUsuarios(){
+function modalUsuarios(referencia){
 	
-	params={"accion":"UsuariosReserva","arrayCarritoCompra":arrayCarritoCompra,"precioTotalCarrito":precioTotalCarrito};
-	
-	$.post('/pantallaAdministrador',params, function(output){
+	var userRegister=document.getElementById('sesionUsuario').value;
+	var idUsuRepren=document.getElementById('idUsuRepresentado').value;
+	if (userRegister=="admin" && idUsuRepren==""){
+		params={"accion":"UsuariosReserva","arrayCarritoCompra":arrayCarritoCompra,"precioTotalCarrito":precioTotalCarrito};
 		
-		var salida=[];
-		var completar="";
-		for (i in output){
-			for (x in output[i]){
-				for (z in output[i][x]){
-					completar=completar+output[i][x][z]+"::";
-				}
-				completar=completar+",";
-			}
-		}
-		$("#paginaModal").load("jsp/ModalErrores.jsp", {titulo:"Usuarios",todosUsuarios:completar},function (){
+		$.post('/pantallaAdministrador',params, function(output){
 			
-		});	
+			var salida=[];
+			var completar="";
+			for (i in output){
+				for (x in output[i]){
+					for (z in output[i][x]){
+						completar=completar+output[i][x][z]+"::";
+					}
+					completar=completar+",";
+				}
+			}
+			$("#paginaModal").load("jsp/ModalErrores.jsp", {titulo:"Usuarios",todosUsuarios:completar,"referenciaReserva":referencia},function (){
+				
+			});	
+			
+			
+		});
+	}else{
+		alert("VentanaPago");
+		ventanaPago();
+	}
 		
-		
-	});
+
 }
 
 function reserAdminforUser(user){
-	
-	alert ("EL USUARIO SELECCIONADO ES: " + user);
+	document.getElementById('idUsuRepresentado').value =user;
+	reservaHabitacion(document.getElementById('referenciaOculta').value);
 }
+

@@ -137,10 +137,10 @@
 				<div style="text-align: left; margin-left: 5%;"> <%=request.getParameter("descripcion")%></div>
 				<div style="float: right; margin-top: 3%;">
 					<div style="display:inline-block;">
-						<button	value="ATRAS" class="button orange" name="ATRAS" type="reset" onclick="atras();">Atrás</button>
+						<button	value="ATRAS" class="button orange" name="ATRAS" type="reset" onclick=" window.parent.document.body.style.zoom='100%'; atras();">Atrás</button>
 					</div>
 					<div style="display:inline-block;">
-	 					<button	value="RESERVA" class="button orange" name="RESERVA" id="RESERVA" type="submit" onclick="reservaHabitacion('<%=request.getParameter("idRef")%>')">Reserva</button>
+	 					<button	value="RESERVA" class="button orange" name="RESERVA" id="RESERVA" type="submit" onclick=" window.parent.document.body.style.zoom='100%'; reservaHabitacion('<%=request.getParameter("idRef")%>')">Reserva</button>
 					</div>
 					<br>
 				</div> 

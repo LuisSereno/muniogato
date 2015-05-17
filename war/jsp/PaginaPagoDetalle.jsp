@@ -50,7 +50,7 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 
 
 
-<table id="tablaDetalleCompra" border="1" border-width="thin" style="font-family: Monotype Corsiva;">
+<table id="tablaDetalleCompra" border=1>
 
 	<tbody>
 	<tr id="Cabecera">
@@ -59,7 +59,7 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 		<td>Descripción</td>
 		<td>Ocupación</td>
 		<td>Precio Día</td>
-		<td>Imagen</td>
+		<td class="imagenTabla">Imagen</td>
 		<td>Fecha Inicio</td>
 		<td>Fecha Fin</td>
 		<td>Precio Total</td>
@@ -71,7 +71,11 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 <br>
 
 <div id="botonFormularioPaypal">
-	<input value="Pago Paypal" type="button" class="button orange" onclick="location.href='/paymentwithpaypal'" class="button">
+	<% if (request.getParameter("usuario")!=null && "admin".equals(request.getParameter("usuario"))){  %>
+		<input value="Pago Paypal" type="button" class="button orange" onclick="location.href='/paymentwithpaypal'" class="button">
+	<% }else{ %>
+		<input value="Pago Paypal" type="button" class="button orange" onclick="location.href='/compraCorrecta'" class="button">
+	<% } %>
 </div>
 
 <div id="avisoTipoCompra" style="margin-top: 15%">

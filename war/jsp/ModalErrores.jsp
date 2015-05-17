@@ -17,6 +17,22 @@ $( "#dialog-message" ).dialog({
 	}); 
 });
 
+$('#adminUsuarios').on('click', 'tr', function(e) {
+	
+    $("#adminUsuarios tr").each(function( index,element ) {
+	   if (index>0){
+			$(element).css('background-color', '');
+	   }
+	});
+	if ($(this).attr("id")!="adminUsuariosCabecera"){
+    	$(this).css('background-color', 'blue');
+    	//idHabitacion;
+    	
+    }
+	
+});
+
+
 </script>
 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
@@ -49,6 +65,7 @@ $( "#dialog-message" ).dialog({
 	if (request.getParameter("todosUsuarios")!=null){	
 		%>
 	<div id="adminUsuarios">
+	<input type="hidden" id="referenciaOculta" value='<%=request.getParameter("referenciaReserva")%>'>
 		<table  border="5">
 			<tbody>
 			<tr id="adminUsuariosCabecera"  style="background-color: #B9FFAA">

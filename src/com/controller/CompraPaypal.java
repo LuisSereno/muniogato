@@ -67,58 +67,63 @@ public class CompraPaypal extends HttpServlet implements Serializable{
 
 	   log.info ("Entra en dopost CompraPayPal");
     	try {
-      		Payment createdPayment = null;
-    		APIContext apiContext = null;
-    		String accessToken = null;
-    		try {
-    			accessToken = GenerateAccessToken.getAccessToken();
-
-    			// ### Api Context
-    			// Pass in a `ApiContext` object to authenticate
-    			// the call and to send a unique request id
-    			// (that ensures idempotency). The SDK generates
-    			// a request id if you do not pass one explicitly.
-    			apiContext = new APIContext(accessToken);
-    			// Use this variant if you want to pass in a request id
-    			// that is meaningful in your application, ideally
-    			// a order id.
-
-    			// String requestId = Long.toString(System.nanoTime());
-    			// apiContext = new APIContext(accessToken, requestId);
-
-    		} catch (PayPalRESTException e) {
-    			log.warning("ERRORpaypalrest: " + e.getMessage());
-    			e.printStackTrace();
-    		}
     		
-    		if (req.getParameter("PayerID") != null) {
-    			Payment payment = new Payment();
-    			if (req.getParameter("guid") != null) {
-    				payment.setId(PaypPalNuevo.map.get(req.getParameter("guid")));
-    			}
+    		HttpSession sesion = req.getSession(false);
+    		
+    		if (sesion.getAttribute("usuario") != null && sesion.getAttribute("usuario") != "admin"){
+         		Payment createdPayment = null;
+        		APIContext apiContext = null;
+        		String accessToken = null;
+        		try {
+        			accessToken = GenerateAccessToken.getAccessToken();
 
-    			PaymentExecution paymentExecution = new PaymentExecution();
-    			paymentExecution.setPayerId(req.getParameter("PayerID"));
-    			try {
-    				createdPayment = payment.execute(apiContext, paymentExecution);
-    				log.info("Datos de la compra");
-    				log.info(createdPayment.getCreateTime());
-    				log.info(createdPayment.getId());
-    				log.info(createdPayment.getIntent());
-    				log.info(createdPayment.getUpdateTime());
-    				log.info(createdPayment.getPayer().toJSON());
-    				log.info(createdPayment.toJSON());
-    				log.info(createdPayment.toString());
-    			} catch (PayPalRESTException e) {
-    				log.warning(e.getLocalizedMessage() + e.getMessage());
-    				log.warning(e.getStackTrace().toString());
-    				e.printStackTrace();
-    				log.warning("Error: ultimo request " + Payment.getLastRequest());
-    			}
-    		} 
+        			// ### Api Context
+        			// Pass in a `ApiContext` object to authenticate
+        			// the call and to send a unique request id
+        			// (that ensures idempotency). The SDK generates
+        			// a request id if you do not pass one explicitly.
+        			apiContext = new APIContext(accessToken);
+        			// Use this variant if you want to pass in a request id
+        			// that is meaningful in your application, ideally
+        			// a order id.
+
+        			// String requestId = Long.toString(System.nanoTime());
+        			// apiContext = new APIContext(accessToken, requestId);
+
+        		} catch (PayPalRESTException e) {
+        			log.warning("ERRORpaypalrest: " + e.getMessage());
+        			e.printStackTrace();
+        		}
+        		
+        		if (req.getParameter("PayerID") != null) {
+        			Payment payment = new Payment();
+        			if (req.getParameter("guid") != null) {
+        				payment.setId(PaypPalNuevo.map.get(req.getParameter("guid")));
+        			}
+
+        			PaymentExecution paymentExecution = new PaymentExecution();
+        			paymentExecution.setPayerId(req.getParameter("PayerID"));
+        			try {
+        				createdPayment = payment.execute(apiContext, paymentExecution);
+        				log.info("Datos de la compra");
+        				log.info(createdPayment.getCreateTime());
+        				log.info(createdPayment.getId());
+        				log.info(createdPayment.getIntent());
+        				log.info(createdPayment.getUpdateTime());
+        				log.info(createdPayment.getPayer().toJSON());
+        				log.info(createdPayment.toJSON());
+        				log.info(createdPayment.toString());
+        			} catch (PayPalRESTException e) {
+        				log.warning(e.getLocalizedMessage() + e.getMessage());
+        				log.warning(e.getStackTrace().toString());
+        				e.printStackTrace();
+        				log.warning("Error: ultimo request " + Payment.getLastRequest());
+        			}
+        		}    			
+    		}
+ 
     		
     		log.info ("Entra en el servlet Comprar");
-    		HttpSession sesion = req.getSession(false);
     		List <Reserva> listaReserva = new ArrayList<Reserva>();
     		listaReserva=(List<Reserva>) sesion.getAttribute("listaReservas");
     		List <String> mensajesAgradecimiento= new ArrayList<String>();

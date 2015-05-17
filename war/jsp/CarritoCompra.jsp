@@ -14,7 +14,7 @@
 	<tbody>
 	<tr id="Cabecera">
 		<td>PRODUCTO</td>
-		<td>DÍAS</td>
+		<td class="tablaCarritoDias">DÍAS</td>
 		<td>PRECIO</td>
 	</tr>
 	</tbody>

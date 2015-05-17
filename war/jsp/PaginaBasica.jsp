@@ -47,10 +47,11 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 </head>
 <body onload="cargaDatosInicial();">
 
-
-		<div id="fotoNavidad" title="Ven y disfruta" style="display:none">
-			<img alt="postalNavidad" src="imagenes/general/MENUSANVALENTIN1.jpg" style="width: 99%; height: 99%;">
-		</div> 
+	<input type="hidden" value="" id="idUsuRepresentado">
+	
+	<div id="fotoNavidad" title="Ven y disfruta" style="display:none">
+		<img alt="postalNavidad" src="imagenes/general/MENUSANVALENTIN1.jpg" style="width: 99%; height: 99%;">
+	</div> 
 
 	<div id="divGeneralBody" class="formatoGeneralPantalla">
 	
@@ -225,7 +226,7 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 								
 								<br>
 								</td>
-								<td style="vertical-align: top; width: 10%; height: 100%; text-align: center;font-size:0.3em">
+								<td class="lateralCarritoCompra">
 									<div id="carritoCompra" style="display:none">
 										<jsp:include page="CarritoCompra.jsp"></jsp:include>
 									</div>
@@ -257,10 +258,10 @@ if (actualSession.getAttribute("precioCarrito")!=null){
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script type="text/javascript" src="js/jqgalscroll.js"></script>
-	<script type="text/javascript" src="js/Metodos.js"></script>
 	<script type="text/javascript" src="js/stuHover.js"></script>
 	<script src="js/modernizr.custom.js"></script>
 	<script src="js/jquery.dlmenu.js"></script>
+	<script type="text/javascript" src="js/Metodos.js"></script>
 
 	<script type="text/javascript">
 	

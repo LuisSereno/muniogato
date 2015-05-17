@@ -24,7 +24,7 @@ import com.interfaces.ConectaRecursos;
 public class Usuario implements ConectaRecursos<Usuario>, Serializable{
 
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(Usuario.class.getName());
     
@@ -365,7 +365,7 @@ public class Usuario implements ConectaRecursos<Usuario>, Serializable{
 
 	@Override
 	public List<Usuario> devolverTodo() {
-		//Esto tendremos que ponerlo como null para controlar el error más arriba tal y como hago con el usuario
+		//Esto tendremos que ponerlo como null para controlar el error mï¿½s arriba tal y como hago con el usuario
 		List<Usuario> listaReservas = new ArrayList<Usuario>();
 		Usuario usu= new Usuario();
 		try{

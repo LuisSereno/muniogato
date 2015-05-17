@@ -22,6 +22,35 @@ body {
 	height:99%;
 }
 
+#PaginaDetallePago{
+	margin:0 10%;
+}
+
+ #botonFormularioPaypal{
+ 	margin:0px 40%;
+ }
+
+#tablaDetalleCompra{
+	border: 1;
+	border-width: thin;
+	font-family: Monotype Corsiva;
+	font-size: 0.9em;
+}
+
+#tablaDetalleCompra .imagenTabla{
+	width:"15%";
+	height:"15%";
+}
+
+
+.lateralCarritoCompra{
+	vertical-align: top; 
+	width: 10%; 
+	height: 100%; 
+	text-align: center;
+	font-size:0.9em
+}
+
 .listadoHabitaciones{
 	float: left; 
 	margin-left: 10%; 
@@ -276,7 +305,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
  	width: 10%; 
  	height: 100%; 
  	text-align: center;
- 	font-size:0.6em;
+ 	font-size:0.9em;
  }
  
  .textoActividades{
@@ -495,11 +524,38 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 		height:50px;
 	}
 	
+	
+	.lateralCarritoCompra{
+		font-size:0.6em
+	}
+	
+	#botonIniciarSesion button,#botonDesconectar button,.lateralCarritoCompra button,#listaHabitaciones button,#botonesFormulario button {
+		width: 99%;
+		padding: 1%;
+	}
 }
 
 
  @media screen and (min-width : 481px) and (max-width: 980px){
+ 
+ 	#PaginaDetallePago{
+ 		margin:0px 0px;
+	 }
+	 
+	 
+	 #tablaDetalleCompra .imagenTabla{
+		display: none;
+	}
 
+	.lateralCarritoCompra{
+		font-size:0.5em
+	}
+	
+ 
+ 	.columnaIniciaSesion{
+	 	font-size:0.6em;
+	 }
+ 
  
  	.imagenTripAdvisor{
 		display:none;
@@ -533,7 +589,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 		height: 100%;
 	}
 	
-	#botonIniciarSesion button{
+	#botonIniciarSesion button,#botonDesconectar button,.lateralCarritoCompra button,#listaHabitaciones button,#botonesFormulario button {
 		width: 99%;
 		padding: 1%;
 	}
@@ -562,6 +618,10 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 		font-family: Monotype Corsiva;
 	}
 	
+	.bannerLateralCarritoTabla .tablaCarritoDias{
+		display: none;
+	}
+	
 	.informacionBannerLateral{
 		width: 100%; 
 	}
@@ -572,7 +632,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	}
 	
 	.imagenBooking{
-		width:110%; 
+		width:70%; 
 		height:100%;
 		margin-right: 5%;
 		padding-right: 5%; 

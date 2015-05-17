@@ -63,7 +63,11 @@ public class AccionReserva extends HttpServlet implements Serializable {
 					Habitaciones hb = new Habitaciones();
 					Usuario usu = new Usuario();
 					Reserva reser = new Reserva();
-					usu.setNickname(sesion.getAttribute("usuario").toString());
+					if (sesion.getAttribute("usuario").toString()=="admin"){
+						usu.setNickname(req.getAttribute("idUsuarioReservaAdmin").toString());
+					}else{
+						usu.setNickname(sesion.getAttribute("usuario").toString());						
+					}
 					// Comprobamos que existan tanto el usuario como la
 					// habitacion
 					usu.setContrasena("reserva");
