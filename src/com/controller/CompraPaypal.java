@@ -124,8 +124,6 @@ public class CompraPaypal extends HttpServlet implements Serializable{
  
     		
     		log.info ("Entra en el servlet Comprar");
-    		List <Reserva> listaReserva = new ArrayList<Reserva>();
-    		listaReserva=(List<Reserva>) sesion.getAttribute("listaReservas");
     		List <String> mensajesAgradecimiento= new ArrayList<String>();
     		int numeroFactura=(int) sesion.getAttribute("numeroFactura");
     		Correos [] correos = (Correos[]) sesion.getAttribute("correosFactura");
@@ -143,9 +141,12 @@ public class CompraPaypal extends HttpServlet implements Serializable{
     		
     		reser.insertarElemento(numeroFactura,-1);
     		
+    		log.warning("EL CORREO0 ES: " + correo.getEmail());
 			if (correo.enviarCorreo(usuario,true)){
 				correo= new Correos();
+				log.warning("EL CORREO CUANDO VACIAMOS ES: " + correo.getEmail());
 				correo=correos[1];
+				log.warning("EL CORREO1 ES: " + correo.getEmail());
     			if (!correo.enviarCorreo(usuario,true)){
         			mensajesAgradecimiento.add("Mi señor, tenemos un problema");
         			mensajesAgradecimiento.add("Acaba de ocurrir un error y no ha sido posible conseguir que su consulta nos llege.");
@@ -168,7 +169,9 @@ public class CompraPaypal extends HttpServlet implements Serializable{
 
  		
 			//Vaciamos todos los datos del usuario
-			listaReserva.clear();
+//    		List <Reserva> listaReserva = new ArrayList<Reserva>();
+//    		listaReserva=(List<Reserva>) sesion.getAttribute("listaReservas");
+//			listaReserva.clear();
 			sesion.setAttribute("listaReservas",null);
 			sesion.setAttribute("precioCarrito",null);
 			sesion.setAttribute("numeroFactura",null);

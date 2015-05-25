@@ -98,14 +98,14 @@ function reservaHabitacion(idRef)
 	var userRegister=document.getElementById('sesionUsuario').value;
 	var idUsuRepren=document.getElementById('idUsuRepresentado').value;
 	if (userRegister=="admin" && idUsuRepren==""){
-		alert ("Saca la modal de usuarios");
 		modalUsuarios(idRef);
 	}else{
 		if ($('#datepickerInicio').val()=="" || $('#datepickerFin').val()==""){
 			mostrarModal("Seleccione una fecha de inicio y de fin");
 			document.body.style.cursor = "auto";
 		}else{
-			params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val()};
+			
+			params={"reserva":"Anadir","codigoHabitacion": idRef,"diaInicio":$('#datepickerInicio').val(),"diaFin":$('#datepickerFin').val(),"numeroHabitaciones":$('#habitacionesReservar').val(),"usuarioRepresentado":idUsuRepren};
 			$.post('/accionReservar',params, function(output){
 				
 				$("#datepickerInicio").val("");
@@ -900,7 +900,6 @@ function modalUsuarios(referencia){
 			
 		});
 	}else{
-		alert("VentanaPago");
 		ventanaPago();
 	}
 		
@@ -911,4 +910,7 @@ function reserAdminforUser(user){
 	document.getElementById('idUsuRepresentado').value =user;
 	reservaHabitacion(document.getElementById('referenciaOculta').value);
 }
+
+
+
 

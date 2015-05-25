@@ -194,9 +194,11 @@ public class Correos  implements ConectaRecursos<Correos>, Serializable {
 		
 		// Quien envia el correo
 		try {
+			log.info("El mensaje va dirigido desde: " + administrador.getCorreoElec());
 			message.setFrom(new InternetAddress(administrador.getCorreoElec()));
 	
 			// A quien va dirigido
+			log.info("El mensaje va dirigido a: " + this.getEmail());
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.getEmail()));
 			
 			message.setSubject(this.getAsunto());

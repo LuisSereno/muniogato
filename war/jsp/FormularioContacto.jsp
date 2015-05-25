@@ -24,7 +24,7 @@ pageEncoding="ISO-8859-1"%>
 		</div>
 		<div id="datosHotel"
 			style="display: inline-block; width: 40%; margin-left: 5%; font-size: 120%">
-			<label><b><u>Dirección</u>: Carretera Ex-104 km: 104
+			<label><b><u>Dirección</u>: Carretera Ex-104 km: 62
 					Cabeza del Buey Badajoz(Extremadura)</b></label> <br> <br> <label><b><u>CP</u>:06600</b></label>
 			<br> <br> <label><b><u>Teléfono</u>: 649067253</b></label>
 			<br> <br> <label><b><u>Email</u>:

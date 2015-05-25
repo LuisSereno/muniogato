@@ -51,7 +51,7 @@ public class CRUD implements Serializable{
 	    try {
 	        DriverManager.registerDriver(new AppEngineDriver());
 	        con = DriverManager.getConnection(CONSTANTES.CONSTANTECONEXION);
-	        
+	        log.info(CONSTANTES.CONSTANTECONEXION);
 	    }catch (SQLException e) {
 	    	log.info("ERROR AL CONECTAR CON LA BASE DE DATOS" + e.getMessage());
 	        con.close();

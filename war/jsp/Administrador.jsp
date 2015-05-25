@@ -158,3 +158,39 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 		</tbody>
 	</table>
 </div>
+
+<div id="divMenu" style="margin-top: 5% ;overflow:auto; height: 300px;">
+	<table id="fotosMenus" border="5" >
+		<tbody>
+		<tr id="cabeceraMenu"  style="background-color: #B9FFAA">
+			<td>Nombre</td>
+			<td>Url</td>
+		</tr>
+		
+		<tr>
+		<td><input type="text" name="nombreMenu"></td>
+		<td><input type="text" name="fotoMenu"></td>
+		<td onclick="alert ('borra la fila');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<button id="addFilaMenu">Añadir Fila</button>
+	<button id="saveDatos">Guardar Datos</button>
+</div>
+
+<script>
+
+	$("#addFilaMenu").click(function() {
+		
+		var n = $('tr:last td', $("#fotosMenus")).length;
+		var tds = '<tr>';
+		tds += '<td><input type="text" name="nombreMenu"></td>';
+		tds += '<td><input type="text" name="fotoMenu"></td>';
+		tds += '<td  onclick="alert (\'borra la fila\');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>';
+		tds += '</tr>';
+		$("#fotosMenus").append(tds);
+		
+	});
+
+</script>

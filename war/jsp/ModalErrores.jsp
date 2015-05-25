@@ -83,7 +83,7 @@ $('#adminUsuarios').on('click', 'tr', function(e) {
 					log("LOS USUARIOS SON" + cadenaUsuarios[0]);
 					for (int i=0;i<cadenaUsuarios.length;i++){
 				%>
-						<tr onclick="reserAdminforUser('<%= cadenaUsuarios[i].split("::")[0]%>');">
+						<tr onclick="reserAdminforUser('<%= cadenaUsuarios[i].split("::")[11]%>');">
 						<td><%= cadenaUsuarios[i].split("::")[0]%> </td>
 						<td><%= cadenaUsuarios[i].split("::")[1]%> </td>
 						<td><%= cadenaUsuarios[i].split("::")[2]%> </td>

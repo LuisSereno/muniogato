@@ -24,6 +24,12 @@ public class CONSTANTES implements Serializable{
 	 */
     public static final String CLIENT_SECRET="ECWY9AmfqDmXOr9RtHyd-6PwNdR7HJgd0CdVLGXqj-khVek0_ZBIglITAhzWp1FMx3Prk1KqoMZa-jLc";
 
+    
+    /**
+     * El usuario del administrador por defecto
+     */
+    
+    public static final String ADMIN="admin";
     /**
      * 
      */
@@ -104,7 +110,9 @@ public class CONSTANTES implements Serializable{
     /**
      * Constante de conexion con la base de datos
      */
-	public static final String CONSTANTECONEXION = "jdbc:google:rdbms://hotelruralbelen:instanciapruebas/hotelruralbelen?user=root";
+//	public static final String CONSTANTECONEXION = "jdbc:google:rdbms://hotelruralbelen:instanciapruebas/hotelruralbelen?user=root";
+    public static final String CONSTANTECONEXION = "jdbc:google:rdbms://hotelruralbelen:hotelruralbelen/hotelruralbelen?user=root";
+    
 	
 	/**
 	 * 

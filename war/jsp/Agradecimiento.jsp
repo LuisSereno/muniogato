@@ -6,8 +6,16 @@
 <%
 log("Entramos en el JSP Agradecimiento");
 ArrayList <String> listaMensajesAgradecimiento = (ArrayList) request.getAttribute("listaMensajesAgradecimiento");
+if (listaMensajesAgradecimiento!=null){ %>
 
+<script type="text/javascript">
+	document.getElementById('idUsuRepresentado').value="";
+</script>
+
+<%
+}
 %>
+
 
 <html>
 	<head>

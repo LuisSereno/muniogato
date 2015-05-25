@@ -172,7 +172,6 @@ public class PaypalButton extends HttpServlet implements Serializable{
 			Correos corrUsu= new Correos(listaReserva.get(0).getUsu().getCorreoElec(), "", CONSTANTES.ASUNTORESERVA, "RESERVA", listaReserva.get(0).getUsu().getNombre());
 			corrUsu.setEstado("No enviado");
 			int referenciaCorreoUsu=corrUsu.insertarElemento();
-			
 			//Necesitamos coger el numero de la factura. Para ello creamos los correos vacios, asignamos las facturas a esos correos, y le a�adimos luego los textos.
 			String cadenaUsurario=this.cadenaFactura(referenciaCorreoUsu,sesion);
 			String cadenaAdministrador="FACTURA A NOMBRE DE: " +listaReserva.get(0).getUsu().getNombre() + "\n" + cadenaUsurario;
@@ -199,6 +198,8 @@ public class PaypalButton extends HttpServlet implements Serializable{
 				reser.actualizarReserva();
 			}
 			
+			log.warning("El email del correo0: " + correos[0].getEmail());
+			log.warning("El email del correo1: " + correos[1].getEmail());
 			sesion.setAttribute("idReservas", numerosReservas);
 			sesion.setAttribute("numeroFactura", numeroFactura);
 			sesion.setAttribute("correosFactura", correos);

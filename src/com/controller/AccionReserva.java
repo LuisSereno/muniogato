@@ -17,6 +17,7 @@ import com.bean.Correos;
 import com.bean.Habitaciones;
 import com.bean.Reserva;
 import com.bean.Usuario;
+import com.constantes.CONSTANTES;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
@@ -63,8 +64,13 @@ public class AccionReserva extends HttpServlet implements Serializable {
 					Habitaciones hb = new Habitaciones();
 					Usuario usu = new Usuario();
 					Reserva reser = new Reserva();
-					if (sesion.getAttribute("usuario").toString()=="admin"){
-						usu.setNickname(req.getAttribute("idUsuarioReservaAdmin").toString());
+					
+					log.info("Es el administrador o no?");
+					log.info(sesion.getAttribute("usuario").toString());
+					if (CONSTANTES.ADMIN.equals(sesion.getAttribute("usuario"))){
+						log.info("ES EL ADMINISTRADOR IMITANDO AL USUARIO: ");
+						log.warning(req.getParameter("usuarioRepresentado").toString());
+						usu.setNickname(req.getParameter("usuarioRepresentado").toString());
 					}else{
 						usu.setNickname(sesion.getAttribute("usuario").toString());						
 					}
@@ -72,6 +78,8 @@ public class AccionReserva extends HttpServlet implements Serializable {
 					// habitacion
 					usu.setContrasena("reserva");
 					usu = usu.devolverElemento();
+					log.warning("El usario sigue siendo: " + usu);
+
 					log.info("Devolvemos el usuario correspondiente");
 					if (usu != null && req.getParameter("diaFin") != null
 							&& req.getParameter("diaInicio") != null) {
@@ -247,6 +255,8 @@ public class AccionReserva extends HttpServlet implements Serializable {
 			List<String> cadenaErrores, HttpSession sesion,
 			Session sesionLocal, Habitaciones hb, Usuario usu, Reserva reser)
 			throws ParseException {
+		
+		log.warning("Que es el usuario: " + usu);
 		String salida;
 		// Realizamos la reserva de manera correspondiente con los datos de
 		// abajo
@@ -258,6 +268,7 @@ public class AccionReserva extends HttpServlet implements Serializable {
 		reser.setPrecioTotal(this.calcularPrecioTotal(reser.getFechaInicio(),
 				reser.getFechaFin(), hb.getPrecio()));
 		reser.setHb(hb);
+		log.warning("EL usuario es: " + usu.getCorreoElec());
 		reser.setUsu(usu);
 		log.info("Hemos calculado el precio total y a�adido a la reserva la habitacion y el usuario");
 		// Si es la primera reserva la a�adimos a la sesion, sino cogemos la
