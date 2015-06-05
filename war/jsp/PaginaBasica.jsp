@@ -8,16 +8,11 @@
 
 
 <%
-log("Entramos en el JSP");
 HashMap mapaInformacion = (HashMap) request.getAttribute("habitaciones");
-log("FALLA AKI");
 int pantallaDesplegar=0;
-log("FALLA AKI1");
 if (request.getAttribute("despliege") != null){
 	pantallaDesplegar= Integer.parseInt(request.getAttribute("despliege").toString());
 }
-log ("Hemos cargado todas las listas");
-log ("PANTALLADESPLEGAR: " + pantallaDesplegar);
 
 //cogemos los datos de la sesion
 HttpSession actualSession = request.getSession(false); 

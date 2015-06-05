@@ -21,6 +21,9 @@ log("LA LISTA DE FACTURAS ES: " + listaFacturas.size());
 ArrayList <Usuario> listaUsuarios = new ArrayList <Usuario>();
 listaUsuarios=(ArrayList)mapaInformacion.get("usuarios");
 log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
+ArrayList <String[]> listaImagenesMenu = new ArrayList <String[]>();
+listaImagenesMenu=(ArrayList)mapaInformacion.get("imagenUsuarios");
+log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 %>
 
 
@@ -31,7 +34,6 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
-	<script type="text/javascript" src="js/jqgalauto.js"></script>
 	<script type="text/javascript" src="js/Metodos.js"></script>
 	<script type="text/javascript" src="js/stuHover.js"></script>
 	
@@ -166,7 +168,17 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 			<td>Nombre</td>
 			<td>Url</td>
 		</tr>
-		
+		<% 
+		for (int i=0;i<listaImagenesMenu.size();i++){
+		%>
+			<tr>
+			<td><input type="text" name="nombreMenu" value="<%=listaImagenesMenu.get(i)[0]%>"></td>
+			<td><input type="text" name="fotoMenu" value="<%=listaImagenesMenu.get(i)[1]%>"></td>
+			<td onclick="alert ('borra la fila');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
+			</tr>
+		<%
+		}
+		%>
 		<tr>
 		<td><input type="text" name="nombreMenu"></td>
 		<td><input type="text" name="fotoMenu"></td>
@@ -191,6 +203,11 @@ log("LA LISTA DE USUARIOS ES: " + listaUsuarios.size());
 		tds += '</tr>';
 		$("#fotosMenus").append(tds);
 		
+	});
+	
+	
+	$("#saveDatos").click(function() {
+		guardarDatosTablaImagenesAdministrador();
 	});
 
 </script>

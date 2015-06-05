@@ -16,8 +16,8 @@ import com.constantes.CONSTANTES;
 import com.google.gson.Gson;
 
 /**
- * Controller principal de la aplicación
- * Se llama desde la página inicial de la aplicación.
+ * Controller principal de la aplicaciï¿½n
+ * Se llama desde la pï¿½gina inicial de la aplicaciï¿½n.
  * @author Sereno
  *
  */
@@ -29,13 +29,13 @@ public class Menu extends HttpServlet implements Serializable{
     private static final long serialVersionUID = 1L;
     
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(Menu.class.getName());
     
     
     /**
-     * Método Post del servlet
+     * Mï¿½todo Post del servlet
      */
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
@@ -58,6 +58,9 @@ public class Menu extends HttpServlet implements Serializable{
     		}else if (valor==5){
     			Administrador admin= new Administrador();
     			admin.doPost(req, resp);
+    		}else if (valor==8){
+    			
+    			
     		}else{
 	            RequestDispatcher rd =null;
 	            req.setAttribute("despliege", valor);
@@ -70,7 +73,7 @@ public class Menu extends HttpServlet implements Serializable{
 	    	
 		}catch (Exception e) {
 			log.info(e.getMessage());
-			log.info ("No se ha podido ir a la página web correcta porque ha ocurrido un error");
+			log.info ("No se ha podido ir a la pï¿½gina web correcta porque ha ocurrido un error");
 	        log.info("Redirigiendo...");
 	        e.printStackTrace();
 	        resp.sendRedirect("jsp/error.jsp");
@@ -81,7 +84,7 @@ public class Menu extends HttpServlet implements Serializable{
 
 
    /**
-    * Método Get del servlet
+    * Mï¿½todo Get del servlet
     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     	doPost(request, response);  

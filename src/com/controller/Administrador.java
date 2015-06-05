@@ -3,12 +3,17 @@ package com.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.cache.CacheFactory;
+import javax.cache.CacheManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.*;
 
@@ -17,6 +22,7 @@ import com.bean.Correos;
 import com.bean.Reserva;
 import com.bean.Usuario;
 import com.constantes.CONSTANTES;
+import com.google.appengine.api.memcache.MemcacheService;
 import com.google.gson.Gson;
 
 /**
@@ -54,6 +60,16 @@ public class Administrador extends HttpServlet implements Serializable{
 				datosAdministrador.put("reservas", reser.devolverTodo());
 				datosAdministrador.put("facturas", reser.devolverTodasFacturas());
 				datosAdministrador.put("usuarios", usu.devolverTodo());
+				
+				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
+				if (ImagenMenuAdministracion.cache!=null){
+					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
+					for (DataObject dao:valor){
+						listaValoresImagenes.add(dao.toArray());
+					}
+				}
+				datosAdministrador.put("imagenUsuarios", listaValoresImagenes);	
+				
 	            RequestDispatcher rd =null;
 	            req.setAttribute("datosAdministrador", datosAdministrador);
 	

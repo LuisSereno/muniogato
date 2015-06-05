@@ -18,8 +18,8 @@ import com.constantes.CONSTANTES;
 import com.google.gson.Gson;
 
 /**
- * Controller principal de la aplicación
- * Se llama desde la página inicial de la aplicación.
+ * Controller principal de la aplicaciï¿½n
+ * Se llama desde la pï¿½gina inicial de la aplicaciï¿½n.
  * @author Sereno
  *
  */
@@ -31,13 +31,13 @@ public class FormularioContacto extends HttpServlet implements Serializable{
     private static final long serialVersionUID = 1L;
     
     /**
-     * Parámetro de la clase, que servirá para mostrar los logs en la consola
+     * Parï¿½metro de la clase, que servirï¿½ para mostrar los logs en la consola
      */
     private static final Logger log = Logger.getLogger(FormularioContacto.class.getName());
     
     
     /**
-     * Método Post del servlet
+     * Mï¿½todo Post del servlet
      */
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
@@ -56,15 +56,15 @@ public class FormularioContacto extends HttpServlet implements Serializable{
     		
     		if (usuario!=null){
     			//Nos enviamos el correo primero a nosotros
-    			String mensajeUsuario= "El usuario "+ req.getParameter("nombre") + " tiene la siguiente pregunta: " + req.getParameter("mensaje");
+    			String mensajeUsuario= "El usuario: "+ req.getParameter("nombre") + "cuyo email es: " + req.getParameter("email") + " tiene la siguiente pregunta: " + req.getParameter("mensaje");
     			Correos correoAdmin= new Correos(usuario.getCorreoElec(), mensajeUsuario, req.getParameter("asunto"), "INFO",req.getParameter("nombre"));
     			if (correoAdmin.enviarCorreo(usuario,false)){
     				mensajeUsuario= "Se ha recibido el mensaje con texto: " + req.getParameter("mensaje");
         			Correos correoUsu= new Correos(req.getParameter("email"), mensajeUsuario, req.getParameter("asunto"), "INFO",req.getParameter("nombre"));
         			if (correoUsu.enviarCorreo(usuario,false)){
-            			mensajesAgradecimiento.add("¡¡¡Muchas Gracias!!!");
+            			mensajesAgradecimiento.add("ï¿½ï¿½ï¿½Muchas Gracias!!!");
             			mensajesAgradecimiento.add("Le agradecemos que quiera ponerse en contacto con nosotros. Nos pondremos en contacto con usted con la mayor brevedad posible.");
-            			mensajesAgradecimiento.add("En unos instantes llegará a su correo un mensaje avisándole de que hemos recibido correctamente su cuestón.");
+            			mensajesAgradecimiento.add("En unos instantes llegarï¿½ a su correo un mensaje avisï¿½ndole de que hemos recibido correctamente su cuestï¿½n.");
 
         			}else{
             			mensajesAgradecimiento.add("Houston, tenemos un problema");
@@ -90,7 +90,7 @@ public class FormularioContacto extends HttpServlet implements Serializable{
     		}
     		
     		
-			//Vamos a la página de inicio
+			//Vamos a la pï¿½gina de inicio
             RequestDispatcher rd =null;
             req.setAttribute("despliege", "4");
             req.setAttribute("listaMensajesAgradecimiento", mensajesAgradecimiento);
@@ -101,7 +101,7 @@ public class FormularioContacto extends HttpServlet implements Serializable{
 	    	
 		}catch (Exception e) {
 			log.info(e.getMessage());
-			log.info ("No se ha podido ir a la página web correcta porque ha ocurrido un error");
+			log.info ("No se ha podido ir a la pï¿½gina web correcta porque ha ocurrido un error");
 	        log.info("Redirigiendo...");
 	        e.printStackTrace();
 	        resp.sendRedirect("jsp/error.jsp");
@@ -112,7 +112,7 @@ public class FormularioContacto extends HttpServlet implements Serializable{
 
 
    /**
-    * Método Get del servlet
+    * Mï¿½todo Get del servlet
     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     	doPost(request, response);  

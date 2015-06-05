@@ -912,5 +912,42 @@ function reserAdminforUser(user){
 }
 
 
+function guardarDatosTablaImagenesAdministrador(){
+	
+	var vectorImagen=[];
+	var diccionario={};
+	var booleanoCorrecto=true;
+	
+	$( "#fotosMenus input" ).each(function(index,element) {
+		if (""==$(element).val() && booleanoCorrecto){
+			booleanoCorrecto=false;
+		}
+		diccionario[$(element).attr("name")]=$(element).val();
+		if ($(element).attr("name")=="fotoMenu"){
+			vectorImagen.push(diccionario);
+			diccionario={};
+		}
+	});
+	
+	alert (booleanoCorrecto);
+	if (booleanoCorrecto){
+		alert ("O AL REVES QUIEN SABE");
+		params={
+				"imagenesAdministrador":JSON.stringify(vectorImagen)
+			}
+			$.post('/guardaImagenesAdministradorMenu',params, function(output){
+				if (output=="ko"){
+					alert ("Se ha producido un error al guardar");
+				}else{
+					alert ("Se ha guardado correctamente");
+				}
+			});
+			
+	}else{
+		alert ("No puede haber campos vacios");
+	}
+
+	
+}
 
 
