@@ -59,8 +59,9 @@ public class Menu extends HttpServlet implements Serializable{
     			Administrador admin= new Administrador();
     			admin.doPost(req, resp);
     		}else if (valor==8){
-    			
-    			
+    			log.info("ENTRA EN LA PAGINAD E IMAGEN MENU");
+    			ImagenMenuAdministracion ima= new ImagenMenuAdministracion();
+    			ima.doPost(req, resp);
     		}else{
 	            RequestDispatcher rd =null;
 	            req.setAttribute("despliege", valor);

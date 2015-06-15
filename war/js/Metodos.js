@@ -928,10 +928,7 @@ function guardarDatosTablaImagenesAdministrador(){
 			diccionario={};
 		}
 	});
-	
-	alert (booleanoCorrecto);
 	if (booleanoCorrecto){
-		alert ("O AL REVES QUIEN SABE");
 		params={
 				"imagenesAdministrador":JSON.stringify(vectorImagen)
 			}
@@ -949,5 +946,17 @@ function guardarDatosTablaImagenesAdministrador(){
 
 	
 }
+
+//
+//$(".imagenesAnadidas").load(function() {
+//	  console.log("Dibuja la foto");
+//	}).attr('display', 'block');
+
+
+$(".imagenesAnadidas").on("load", function() {
+	 $(this).width($(this).width()-1);
+	 $(this).height($(this).height()-1);
+});
+
 
 

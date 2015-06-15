@@ -65,6 +65,7 @@ public class Administrador extends HttpServlet implements Serializable{
 				if (ImagenMenuAdministracion.cache!=null){
 					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
 					for (DataObject dao:valor){
+						dao.fotoMenu=dao.fotoMenu.substring(dao.fotoMenu.indexOf(CONSTANTES.DRIVEIMAGENES) + CONSTANTES.DRIVEIMAGENES.length(), dao.fotoMenu.length());
 						listaValoresImagenes.add(dao.toArray());
 					}
 				}

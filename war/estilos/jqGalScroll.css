@@ -26,6 +26,17 @@ body {
 	margin:0 10%;
 }
 
+.imgfull{
+    min-height:100%;
+    min-width:100%;
+	width:700px;
+    height:500px;
+    position:fixed;
+    top:-50%; bottom:-50%;
+    left:-50%; right:-50%;
+    margin:auto;
+}
+
  #botonFormularioPaypal{
  	margin:0px 40%;
  }
@@ -240,7 +251,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 }
 
 .imagenesAnadidas{
-	width: 100%;
+	width: 700px;
 	height: 100%;
 }
 
@@ -309,8 +320,8 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
  }
  
  .textoActividades{
- 	margin-left:15%;
- 	font-size:1.6em;
+ 	margin-left:40%;
+ 	font-size:2em;
  }
  
  .camposFormulario{
@@ -359,8 +370,18 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 #RESERVA{
 	display: block;
 }
+
+
+#fotosMenus tr{
+	width: 50%;
+}
 	
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+	
+	.imgfull{
+		width:300px;
+    	height:200px;
+	}
 	
 	.informacionBannerLateral{
 		width: 100%; 
@@ -467,7 +488,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	}
  	
 	.imagenesAnadidas{
-		width: 100%;
+		width: 150px;
 		height: 100%;
 	}
 	
@@ -537,6 +558,12 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 
 
  @media screen and (min-width : 481px) and (max-width: 980px){
+ 
+ 
+ 	.imgfull{
+		width:500px;
+    	height:300px;
+	}
  
  	#PaginaDetallePago{
  		margin:0px 0px;
@@ -627,7 +654,7 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 	}
 	
 	.imagenesAnadidas{
-		width: 100%;
+		width: 400px;
 		height: 100%;
 	}
 	
@@ -706,7 +733,10 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 
 @media screen and (min-width : 980px) and (max-width: 1024px){
  
- 
+ 	.imgfull{
+		width:600px;
+    	height:400px;
+	}
 	.mapaMediano{
 		display: block;
 	}
@@ -729,6 +759,10 @@ ESTOS SON LOS ESTILOS DE LOS BOTONES
 		height:90px;
 		margin-bottom: 5%;
 	} 
-
+	.imagenesAnadidas{
+		width: 500px;
+		height: 100%;
+		
+	}
 
 }  

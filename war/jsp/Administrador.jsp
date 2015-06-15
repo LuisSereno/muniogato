@@ -31,12 +31,6 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> 
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/jqGalScroll.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="estilos/pro_dropdown_2.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
-	<script type="text/javascript" src="js/Metodos.js"></script>
-	<script type="text/javascript" src="js/stuHover.js"></script>
-	
 
 <div id="divAdminReservas" style="margin-top: 5%;overflow:auto; height: 300px; ">
 	<table id="adminReservas" border="5" style="">
@@ -172,9 +166,9 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		for (int i=0;i<listaImagenesMenu.size();i++){
 		%>
 			<tr>
-			<td><input type="text" name="nombreMenu" value="<%=listaImagenesMenu.get(i)[0]%>"></td>
-			<td><input type="text" name="fotoMenu" value="<%=listaImagenesMenu.get(i)[1]%>"></td>
-			<td onclick="alert ('borra la fila');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
+			<td><input type="text" name="nombreMenu" value="<%=listaImagenesMenu.get(i)[0]%>" disabled></td>
+			<td><input type="text" name="fotoMenu" value="<%=listaImagenesMenu.get(i)[1]%>" disabled></td>
+			<td id="borrarDatos"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
 			</tr>
 		<%
 		}
@@ -182,7 +176,7 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		<tr>
 		<td><input type="text" name="nombreMenu"></td>
 		<td><input type="text" name="fotoMenu"></td>
-		<td onclick="alert ('borra la fila');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
+		<td><button onclick="botonBorrarImagenMenu(this);"><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
 		</tr>
 		</tbody>
 	</table>
@@ -191,6 +185,14 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 	<button id="saveDatos">Guardar Datos</button>
 </div>
 
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script type="text/javascript" src="js/Metodos.js"></script>
+	<script type="text/javascript" src="js/stuHover.js"></script>
+	
+	
 <script>
 
 	$("#addFilaMenu").click(function() {
@@ -199,7 +201,7 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		var tds = '<tr>';
 		tds += '<td><input type="text" name="nombreMenu"></td>';
 		tds += '<td><input type="text" name="fotoMenu"></td>';
-		tds += '<td  onclick="alert (\'borra la fila\');"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>';
+		tds += '<td><button onclick="botonBorrarImagenMenu(this);"><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>';
 		tds += '</tr>';
 		$("#fotosMenus").append(tds);
 		
@@ -209,5 +211,10 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 	$("#saveDatos").click(function() {
 		guardarDatosTablaImagenesAdministrador();
 	});
-
+	
+	function botonBorrarImagenMenu(boton){
+		$(boton).parent().parent().remove();
+	}
+	
+	
 </script>

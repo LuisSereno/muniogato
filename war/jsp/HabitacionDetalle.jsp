@@ -96,10 +96,7 @@
 							    minDate: '+0d',
 							    dateFormat: 'dd/mm/yy',
 							    beforeShowDay: DisableDays ,
-							    showButtonPanel: false,
-							    onClose: function (selectedDate) {
-									$("#datepickerInicio").datepicker("option", "maxDate", selectedDate);
-								}
+							    showButtonPanel: false
 							});
 							
 							//http://www.desarrolloweb.com/articulos/jquery-ui-datepicker-avanzado.html

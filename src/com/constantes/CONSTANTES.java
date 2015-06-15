@@ -24,6 +24,11 @@ public class CONSTANTES implements Serializable{
 	 */
     public static final String CLIENT_SECRET="ECWY9AmfqDmXOr9RtHyd-6PwNdR7HJgd0CdVLGXqj-khVek0_ZBIglITAhzWp1FMx3Prk1KqoMZa-jLc";
 
+	/**
+	 * Constante para ver correctamente las imágenes de drive
+	 */
+    public static final String DRIVEIMAGENES="http://drive.google.com/uc?export=view&id=";
+
     
     /**
      * El usuario del administrador por defecto
