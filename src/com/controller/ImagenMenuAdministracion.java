@@ -7,24 +7,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import javax.cache.Cache;
-import javax.cache.CacheFactory;
-import javax.cache.CacheManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bean.Habitaciones;
-import com.constantes.CONSTANTES;
-import com.google.appengine.api.memcache.MemcacheService;
-import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
+import com.bean.MenuImagenes;
 import com.google.gson.Gson;
 
 /**
@@ -45,8 +36,6 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 	private static final Logger log = Logger
 			.getLogger(ImagenMenuAdministracion.class.getName());
 
-	public static Cache cache;
-
 	/**
 	 * M�todo Post del servlet
 	 */
@@ -58,40 +47,33 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 		PrintWriter out = resp.getWriter();
 		Gson gson = null;
 		try {
-			List<DataObject> datoAux = new ArrayList<DataObject>();
+			List<MenuImagenes> datoAux = new ArrayList<MenuImagenes>();
 			if (req.getParameter("imagenesAdministrador") != null) {
 				
 				out = resp.getWriter();
 				resp.setContentType("application/json");				
-				CacheFactory cacheFactory = CacheManager.getInstance()
-						.getCacheFactory();
 				gson = new Gson();
-				Map properties = new HashMap<>();
-				properties.put(MemcacheService.SetPolicy.SET_ALWAYS, true);
-		        properties.put(GCacheFactory.EXPIRATION_DELTA, TimeUnit.DAYS.toSeconds(20));
-				cache = cacheFactory.createCache(properties);
 				
-				DataObject[] datos = gson.fromJson(
+				MenuImagenes[] datos = gson.fromJson(
 						req.getParameter("imagenesAdministrador"),
-						DataObject[].class);
+						MenuImagenes[].class);
 
-				for (DataObject dato : datos) {
-					if (!dato.fotoMenu.equals("") && !dato.nombreMenu.equals("")) {
-						dato.fotoMenu= CONSTANTES.DRIVEIMAGENES+ dato.fotoMenu;
+				for (MenuImagenes dato : datos) {
+					if (!dato.getFotoMenu().equals("") && !dato.getNombreMenu().equals("")) {
 						datoAux.add(dato);
 					}
 				}
-				cache.put("imagenesMenu", datoAux);
+				MenuImagenes muin= new MenuImagenes();
+				muin.setListaImagenes(datoAux);
+				muin.insertarImagenes();
 
 			} else {
 				int despliege=8;
 				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
-				if (ImagenMenuAdministracion.cache!=null){
-					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
-					for (DataObject dao:valor){
-						dao.fotoMenu=dao.fotoMenu.substring(dao.fotoMenu.indexOf(CONSTANTES.DRIVEIMAGENES), dao.fotoMenu.length());
-						listaValoresImagenes.add(dao.toArray());
-					}
+				MenuImagenes meIm= new MenuImagenes();
+				List <MenuImagenes> valor = meIm.devolverTodo();
+				for (MenuImagenes dao:valor){
+					listaValoresImagenes.add(dao.toArray());
 				}
 		    	req.setAttribute("imagenesMenu", listaValoresImagenes);
 		    	req.setAttribute("despliege", despliege);
@@ -121,20 +103,3 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 
 }
 
-class DataObject implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public String nombreMenu;
-
-	public String fotoMenu;
-
-	public String[] toArray() {
-		String[] valorSalida = { this.nombreMenu, this.fotoMenu };
-		return valorSalida;
-	}
-
-}

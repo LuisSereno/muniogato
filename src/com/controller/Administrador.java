@@ -62,13 +62,13 @@ public class Administrador extends HttpServlet implements Serializable{
 				datosAdministrador.put("usuarios", usu.devolverTodo());
 				
 				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
-				if (ImagenMenuAdministracion.cache!=null){
-					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
-					for (DataObject dao:valor){
-						dao.fotoMenu=dao.fotoMenu.substring(dao.fotoMenu.indexOf(CONSTANTES.DRIVEIMAGENES) + CONSTANTES.DRIVEIMAGENES.length(), dao.fotoMenu.length());
-						listaValoresImagenes.add(dao.toArray());
-					}
-				}
+//				if (ImagenMenuAdministracion.cache!=null){
+//					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
+//					for (DataObject dao:valor){
+//						dao.fotoMenu=dao.fotoMenu.substring(dao.fotoMenu.indexOf(CONSTANTES.DRIVEIMAGENES) + CONSTANTES.DRIVEIMAGENES.length(), dao.fotoMenu.length());
+//						listaValoresImagenes.add(dao.toArray());
+//					}
+//				}
 				datosAdministrador.put("imagenUsuarios", listaValoresImagenes);	
 				
 	            RequestDispatcher rd =null;
