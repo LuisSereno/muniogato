@@ -60,6 +60,7 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 
 				for (MenuImagenes dato : datos) {
 					if (!dato.getFotoMenu().equals("") && !dato.getNombreMenu().equals("")) {
+						dato.setTipo("menu");
 						datoAux.add(dato);
 					}
 				}
@@ -71,8 +72,8 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 				int despliege=8;
 				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
 				MenuImagenes meIm= new MenuImagenes();
-				List <MenuImagenes> valor = meIm.devolverTodo();
-				for (MenuImagenes dao:valor){
+				meIm.devolverTodo();
+				for (MenuImagenes dao:meIm.getListaImagenes()){
 					listaValoresImagenes.add(dao.toArray());
 				}
 		    	req.setAttribute("imagenesMenu", listaValoresImagenes);

@@ -63,9 +63,9 @@ public class MenuImagenes implements Serializable {
 		return valorSalida;
 	}
 
-	public List<MenuImagenes> devolverTodo() {
-		// TODO Auto-generated method stub
-		return null;
+	public void devolverTodo() {
+		CRUDdatastore<MenuImagenes> conn= new CRUDdatastore<MenuImagenes>();
+		this.setListaImagenes(conn.obtenerElement("tipo","menu"));
 	}
 
 	public List<MenuImagenes> getListaImagenes() {
