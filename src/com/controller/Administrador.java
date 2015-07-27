@@ -19,6 +19,7 @@ import javax.servlet.http.*;
 
 import com.aeat.valida.Validador;
 import com.bean.Correos;
+import com.bean.MenuImagenes;
 import com.bean.Reserva;
 import com.bean.Usuario;
 import com.constantes.CONSTANTES;
@@ -61,7 +62,6 @@ public class Administrador extends HttpServlet implements Serializable{
 				datosAdministrador.put("facturas", reser.devolverTodasFacturas());
 				datosAdministrador.put("usuarios", usu.devolverTodo());
 				
-				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
 //				if (ImagenMenuAdministracion.cache!=null){
 //					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
 //					for (DataObject dao:valor){
@@ -69,6 +69,13 @@ public class Administrador extends HttpServlet implements Serializable{
 //						listaValoresImagenes.add(dao.toArray());
 //					}
 //				}
+				
+				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
+				MenuImagenes meIm= new MenuImagenes();
+				meIm.devolverTodo();
+				for (MenuImagenes dao:meIm.getListaImagenes()){
+					listaValoresImagenes.add(dao.toArray());
+				}
 				datosAdministrador.put("imagenUsuarios", listaValoresImagenes);	
 				
 	            RequestDispatcher rd =null;
