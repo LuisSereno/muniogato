@@ -161,6 +161,7 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		<tr id="cabeceraMenu"  style="background-color: #B9FFAA">
 			<td>Nombre</td>
 			<td>Url</td>
+			<td>Tipo</td>
 		</tr>
 		<% 
 		for (int i=0;i<listaImagenesMenu.size();i++){
@@ -168,7 +169,26 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 			<tr>
 			<td><input type="text" name="nombreMenu" value="<%=listaImagenesMenu.get(i)[0]%>" disabled></td>
 			<td><input type="text" name="fotoMenu" value="<%=listaImagenesMenu.get(i)[1]%>" disabled></td>
-			<td id="borrarDatos"><button><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
+			<td>
+				<select name="tipo" disabled>
+				<%if ("menu".equals(listaImagenesMenu.get(i)[2])) { 
+				System.out.println("Mira aqui capullo");%>
+					<option value="menu" selected>Menu</option>
+				<%}else{
+				System.out.println("Mira aqui capullo2"); %>
+					<option value="menu">Menu</option>
+				<%} %>
+				<% if ("actividades".equals(listaImagenesMenu.get(i)[2])) { 
+				System.out.println("Mira aqui capullo3");%>
+					<option value="actividades" selected>Actividades</option>
+				<%}else{
+				System.out.println("Mira aqui capullo4"); %>
+					<option value="actividades">Actividades</option>
+				<%} %>
+				
+				</select>
+			</td>
+			<td><button onclick="botonBorrarImagenMenu(this);" ><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
 			</tr>
 		<%
 		}
@@ -176,6 +196,12 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		<tr>
 		<td><input type="text" name="nombreMenu"></td>
 		<td><input type="text" name="fotoMenu"></td>
+		<td>
+			<select name="tipo">
+				<option value="menu">Menu</option>
+				<option value="actividades">Actividades</option>
+			</select>
+		</td>	
 		<td><button onclick="botonBorrarImagenMenu(this);"><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>
 		</tr>
 		</tbody>
@@ -201,6 +227,7 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 		var tds = '<tr>';
 		tds += '<td><input type="text" name="nombreMenu"></td>';
 		tds += '<td><input type="text" name="fotoMenu"></td>';
+		tds += '<td><select><option value="menu">Menu</option><option value="actividades">Actividades</option></select></td>';
 		tds += '<td><button onclick="botonBorrarImagenMenu(this);"><img style="width: 10px;" alt="" src="imagenes/general/ico_aspa.png"></button></td>';
 		tds += '</tr>';
 		$("#fotosMenus").append(tds);
@@ -211,10 +238,6 @@ log("LA LISTA DE IMAGENES DE MENU ES: " + listaImagenesMenu.size());
 	$("#saveDatos").click(function() {
 		guardarDatosTablaImagenesAdministrador();
 	});
-	
-	function botonBorrarImagenMenu(boton){
-		$(boton).parent().parent().remove();
-	}
 	
 	
 </script>

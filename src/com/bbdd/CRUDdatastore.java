@@ -1,6 +1,7 @@
 package com.bbdd;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.bean.MenuImagenes;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -17,6 +18,11 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 
 public class CRUDdatastore <K>{
 	
+	/**
+	 * Par�metro de la clase, que servir� para mostrar los logs en la consola
+	 */
+	private static final Logger log = Logger
+			.getLogger(CRUDdatastore.class.getName());
 	
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -34,14 +40,24 @@ public class CRUDdatastore <K>{
 	
 
 	public List<MenuImagenes> obtenerElement(String propiedad, String valor){
+		log.info("obtenerElement");
 		List<MenuImagenes> listaDatosSalida=new ArrayList<MenuImagenes>();
-		Query q = new Query("MenuImagenes").setFilter(FilterOperator.EQUAL.of(propiedad,valor));
+		Query q;
+		if (propiedad==""){
+			q = new Query("MenuImagenes");
+
+		}else{
+			q = new Query("MenuImagenes").setFilter(FilterOperator.EQUAL.of(propiedad,valor));
+
+		}
 		PreparedQuery pq = datastore.prepare(q);
 		for (Entity result : pq.asIterable()) {
 			MenuImagenes mu= new MenuImagenes();
 			mu.setTipo((String) result.getProperty("tipo"));
+			log.warning((String) result.getProperty("tipo"));
 			mu.setNombreMenu((String) result.getProperty("nombre"));
 			mu.setFotoMenu((String) result.getProperty("foto"));
+			log.warning(mu.toString());
 			listaDatosSalida.add(mu);
 		}
 		return listaDatosSalida;
@@ -56,5 +72,10 @@ public class CRUDdatastore <K>{
 			e.printStackTrace();
 		}
 		return employee;
+	}
+	
+	public void borrarElement(String nombre){
+		Key k = KeyFactory.createKey("MenuImagenes", nombre);
+		datastore.delete(k);	
 	}
 }

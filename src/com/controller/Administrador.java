@@ -4,26 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.cache.CacheFactory;
-import javax.cache.CacheManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.*;
 
-import com.aeat.valida.Validador;
-import com.bean.Correos;
 import com.bean.MenuImagenes;
 import com.bean.Reserva;
 import com.bean.Usuario;
-import com.constantes.CONSTANTES;
-import com.google.appengine.api.memcache.MemcacheService;
 import com.google.gson.Gson;
 
 /**
@@ -62,19 +51,11 @@ public class Administrador extends HttpServlet implements Serializable{
 				datosAdministrador.put("facturas", reser.devolverTodasFacturas());
 				datosAdministrador.put("usuarios", usu.devolverTodo());
 				
-//				if (ImagenMenuAdministracion.cache!=null){
-//					List <DataObject> valor = (ArrayList<DataObject>)ImagenMenuAdministracion.cache.get("imagenesMenu");
-//					for (DataObject dao:valor){
-//						dao.fotoMenu=dao.fotoMenu.substring(dao.fotoMenu.indexOf(CONSTANTES.DRIVEIMAGENES) + CONSTANTES.DRIVEIMAGENES.length(), dao.fotoMenu.length());
-//						listaValoresImagenes.add(dao.toArray());
-//					}
-//				}
-				
 				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
 				MenuImagenes meIm= new MenuImagenes();
 				meIm.devolverTodo();
 				for (MenuImagenes dao:meIm.getListaImagenes()){
-					listaValoresImagenes.add(dao.toArray());
+					listaValoresImagenes.add(dao.toArray(true));
 				}
 				datosAdministrador.put("imagenUsuarios", listaValoresImagenes);	
 				

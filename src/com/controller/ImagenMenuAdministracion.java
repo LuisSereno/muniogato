@@ -49,32 +49,37 @@ public class ImagenMenuAdministracion extends HttpServlet implements
 		try {
 			List<MenuImagenes> datoAux = new ArrayList<MenuImagenes>();
 			if (req.getParameter("imagenesAdministrador") != null) {
-				
 				out = resp.getWriter();
 				resp.setContentType("application/json");				
 				gson = new Gson();
-				
-				MenuImagenes[] datos = gson.fromJson(
-						req.getParameter("imagenesAdministrador"),
-						MenuImagenes[].class);
+				if ("guardar".equals(req.getParameter("accion"))){
+					MenuImagenes[] datos = gson.fromJson(
+							req.getParameter("imagenesAdministrador"),
+							MenuImagenes[].class);
 
-				for (MenuImagenes dato : datos) {
-					if (!dato.getFotoMenu().equals("") && !dato.getNombreMenu().equals("")) {
-						dato.setTipo("menu");
-						datoAux.add(dato);
+					for (MenuImagenes dato : datos) {
+						if (!dato.getFotoMenu().equals("") && !dato.getNombreMenu().equals("")) {
+							datoAux.add(dato);
+						}
 					}
+					if (!datoAux.isEmpty()){
+						MenuImagenes muin= new MenuImagenes();
+						muin.setListaImagenes(datoAux);
+						muin.insertarImagenes();
+					}
+				}else if ("borrar".equals(req.getParameter("accion"))){
+					MenuImagenes mui= new MenuImagenes();
+					mui.setNombreMenu(req.getParameter("imagenesAdministrador"));
+					mui.borrarImagenes();
 				}
-				MenuImagenes muin= new MenuImagenes();
-				muin.setListaImagenes(datoAux);
-				muin.insertarImagenes();
 
 			} else {
 				int despliege=8;
 				List <String[]> listaValoresImagenes= new ArrayList <String[]> ();				
 				MenuImagenes meIm= new MenuImagenes();
-				meIm.devolverTodo();
+				meIm.devolverTodo("menu");
 				for (MenuImagenes dao:meIm.getListaImagenes()){
-					listaValoresImagenes.add(dao.toArray());
+					listaValoresImagenes.add(dao.toArray(false));
 				}
 		    	req.setAttribute("imagenesMenu", listaValoresImagenes);
 		    	req.setAttribute("despliege", despliege);

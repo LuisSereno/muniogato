@@ -918,24 +918,28 @@ function guardarDatosTablaImagenesAdministrador(){
 	var diccionario={};
 	var booleanoCorrecto=true;
 	
-	$( "#fotosMenus input" ).each(function(index,element) {
+	$( "#fotosMenus input,select" ).each(function(index,element) {
 		if (""==$(element).val() && booleanoCorrecto){
 			booleanoCorrecto=false;
 		}
 		diccionario[$(element).attr("name")]=$(element).val();
-		if ($(element).attr("name")=="fotoMenu"){
+		if ($(element).attr("name")=="tipo"){
 			vectorImagen.push(diccionario);
 			diccionario={};
 		}
 	});
 	if (booleanoCorrecto){
 		params={
+				"accion":"guardar",
 				"imagenesAdministrador":JSON.stringify(vectorImagen)
 			}
 			$.post('/guardaImagenesAdministradorMenu',params, function(output){
 				if (output=="ko"){
 					alert ("Se ha producido un error al guardar");
 				}else{
+					$( "#fotosMenus input,select" ).each(function(index,element) {
+						$(element).attr("disabled",true);
+					});
 					alert ("Se ha guardado correctamente");
 				}
 			});
@@ -947,11 +951,16 @@ function guardarDatosTablaImagenesAdministrador(){
 	
 }
 
-//
-//$(".imagenesAnadidas").load(function() {
-//	  console.log("Dibuja la foto");
-//	}).attr('display', 'block');
+function botonBorrarImagenMenu(boton){
 
+	params={
+			"accion":"borrar",
+			"imagenesAdministrador":$(boton).parent().parent().find("input").eq(0).val()
+		}
+		$.post('/guardaImagenesAdministradorMenu',params, function(output){
+			$(boton).parent().parent().remove();
+		});
+}
 
 $(".imagenesAnadidas").on("load", function() {
 	 $(this).width($(this).width()-1);
